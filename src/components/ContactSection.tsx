@@ -76,13 +76,13 @@ const ContactSection = () => {
           </div>
           
           <div className="mt-10 text-center">
-            <p className="text-architect-muted mb-2">
+            <p className="text-architect-muted mb-2 text-lg">
               Oder kontaktieren Sie mich direkt per Email unter: <br />
-              <a href="mailto:info@nksmd.de" className="text-architect-accent font-medium hover:underline">info@nksmd.de</a>
+              <a href="mailto:info@nksmd.de" className="text-architect-accent font-medium hover:underline text-xl">info@nksmd.de</a>
             </p>
-            <p className="text-architect-muted">
+            <p className="text-architect-muted text-lg">
               Telefonisch erreichbar unter: <br />
-              <a href="tel:+4917699351415" className="text-architect-accent font-medium hover:underline">+49 176 99351415</a>
+              <a href="tel:+4917699351415" className="text-architect-accent font-medium hover:underline text-xl">+49 176 99351415</a>
             </p>
           </div>
         </div>
