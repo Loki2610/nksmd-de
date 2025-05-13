@@ -21,12 +21,12 @@ const AboutSection = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
-              <div className="flex items-start">
+            <div className="grid grid-cols-2 gap-x-16 gap-y-8 mt-8">
+              <div className="flex items-start col-span-1">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <GraduationCap className="h-6 w-6 text-architect-accent" />
                 </div>
-                <div>
+                <div className="w-full">
                   <h3 className="text-lg font-medium text-architect-dark mb-2">Ausbildung</h3>
                   <ul className="text-architect-muted space-y-2">
                     <li>• Bachelor an der Hochschule Trier</li>
@@ -35,11 +35,11 @@ const AboutSection = () => {
                 </div>
               </div>
               
-              <div className="flex items-start">
+              <div className="flex items-start col-span-1 justify-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <Briefcase className="h-6 w-6 text-architect-accent" />
                 </div>
-                <div>
+                <div className="w-full">
                   <h3 className="text-lg font-medium text-architect-dark mb-2">Berufserfahrung</h3>
                   <ul className="text-architect-muted space-y-2">
                     <li>• Scheidt Kasprusch Architekten, Berlin</li>
@@ -49,11 +49,11 @@ const AboutSection = () => {
                 </div>
               </div>
               
-              <div className="flex items-start">
+              <div className="flex items-start col-span-1">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <User className="h-6 w-6 text-architect-accent" />
                 </div>
-                <div>
+                <div className="w-full">
                   <h3 className="text-lg font-medium text-architect-dark mb-2">Qualifikationen</h3>
                   <ul className="text-architect-muted space-y-2">
                     <li>• Mitglied der Bayerischen Architektenkammer</li>
@@ -63,11 +63,11 @@ const AboutSection = () => {
                 </div>
               </div>
               
-              <div className="flex items-start">
+              <div className="flex items-start col-span-1 justify-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <Construction className="h-6 w-6 text-architect-accent" />
                 </div>
-                <div>
+                <div className="w-full">
                   <h3 className="text-lg font-medium text-architect-dark mb-2">Expertise</h3>
                   <ul className="text-architect-muted space-y-2">
                     <li>• Bauprojekte in ganz Deutschland & Österreich</li>
