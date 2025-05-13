@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { User, Construction, GraduationCap, Briefcase } from "lucide-react";
+
 const AboutSection = () => {
   return <section id="about" className="py-16 bg-white">
       <div className="section-container">
@@ -80,7 +82,7 @@ const AboutSection = () => {
             <div className="aspect-[4/3] bg-architect-light rounded-lg overflow-hidden shadow-xl">
               <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait von Nikolaus Schmid" className="w-full h-full object-cover" />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg translate-y-[-500px]">
+            <div className="absolute bottom-0 left-0 bg-white p-4 rounded-lg shadow-lg">
               <p className="text-architect-dark font-medium">Seit 2020</p>
               <p className="text-architect-muted text-sm">Freiberuflicher Architekt</p>
             </div>
@@ -89,4 +91,5 @@ const AboutSection = () => {
       </div>
     </section>;
 };
+
 export default AboutSection;
