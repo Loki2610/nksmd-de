@@ -80,7 +80,7 @@ const AboutSection = () => {
           </div>
           
           <div className="relative lg:mt-16">
-            <div className="bg-architect-light rounded-lg overflow-hidden shadow-xl max-h-[350px]">
+            <div className="bg-architect-light rounded-lg overflow-hidden shadow-xl max-h-[400px]">
               <AspectRatio ratio={4/3} className="h-full">
                 <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait von Nikolaus Schmid" className="w-full h-full object-cover" />
               </AspectRatio>
