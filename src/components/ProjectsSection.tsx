@@ -1,29 +1,23 @@
 
 import React from 'react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
-const projectsData = [
+const companyReferences = [
   {
-    title: "Huf Haus Projekte",
-    description: "Langjährige Zusammenarbeit mit Huf Haus bei der Planung und Genehmigung zahlreicher hochwertiger Gebäude.",
-    location: "Deutschlandweit",
-    type: "Wohngebäude",
-    image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&q=80&w=800&h=500"
+    name: "Enter",
+    description: "Langjährige Zusammenarbeit bei der Planung und Genehmigung zahlreicher hochwertiger Gebäude.",
+    logo: "/lovable-uploads/7aa5ff54-4622-4daa-89b5-469bf0b17feb.png"
   },
   {
-    title: "Gewerbeobjekt München",
-    description: "Planung und Genehmigungsverfahren für ein Bürogebäude mit gemischter Nutzung.",
-    location: "München, Bayern",
-    type: "Gewerbe",
-    image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80&w=800&h=500"
+    name: "HUF HAUS",
+    description: "Umfassende Beratung und Begleitung bei bauordnungsrechtlichen Fragestellungen für HUF HAUS Projekte.",
+    logo: "/lovable-uploads/af567617-eb60-4060-96d7-ebfd4702111f.png"
   },
   {
-    title: "Mehrfamilienhaus Projekt",
-    description: "Umfassendes Genehmigungsmanagement für ein Mehrfamilienhaus mit 12 Wohneinheiten.",
-    location: "Nürnberg, Bayern",
-    type: "Mehrfamilienhaus",
-    image: "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?auto=format&fit=crop&q=80&w=800&h=500"
+    name: "OKAL",
+    description: "Erfolgreiche Zusammenarbeit bei der Realisierung von Bauvorhaben deutschlandweit.",
+    logo: "/lovable-uploads/feaead92-ddad-4b55-9fab-e06ce90f7a77.png"
   }
 ];
 
@@ -32,31 +26,24 @@ const ProjectsSection = () => {
     <section id="projects" className="py-16 bg-architect-light">
       <div className="section-container">
         <div className="content-container text-center mb-12">
-          <h2 className="text-3xl font-bold text-architect-dark">Referenzprojekte</h2>
+          <h2 className="text-3xl font-bold text-architect-dark">Firmenreferenzen</h2>
           <p className="mt-4 text-architect-muted">
-            Eine Auswahl erfolgreich realisierter Projekte in Zusammenarbeit mit führenden Bauunternehmen.
+            Namhafte Unternehmen vertrauen auf unsere Expertise und Erfahrung.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projectsData.map((project, index) => (
-            <Card key={index} className="overflow-hidden h-full border-none shadow-lg">
-              <div className="h-48 relative overflow-hidden">
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-              </div>
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <div className="flex items-center text-sm text-architect-muted">
-                  <MapPin className="h-4 w-4 mr-1" />
-                  <span>{project.location}</span>
+          {companyReferences.map((company, index) => (
+            <Card key={index} className="overflow-hidden h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <CardContent className="p-6 flex flex-col items-center">
+                <div className="w-full mb-6 h-28 flex items-center justify-center">
+                  <AspectRatio ratio={3/1} className="w-full max-w-[220px]">
+                    <img src={company.logo} alt={`${company.name} Logo`} className="w-full h-full object-contain" />
+                  </AspectRatio>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-architect-muted">{project.description}</CardDescription>
+                <h3 className="text-xl font-semibold mb-2 text-architect-dark">{company.name}</h3>
+                <p className="text-architect-muted text-center">{company.description}</p>
               </CardContent>
-              <CardFooter className="text-sm text-architect-muted">
-                <div className="text-architect-accent font-medium">{project.type}</div>
-              </CardFooter>
             </Card>
           ))}
         </div>
