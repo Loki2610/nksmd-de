@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { User, Construction, GraduationCap, Briefcase } from "lucide-react";
 const AboutSection = () => {
   return <section id="about" className="py-16 bg-white">
       <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-architect-dark mb-6">Über mich</h2>
@@ -76,7 +77,7 @@ const AboutSection = () => {
             </div>
           </div>
           
-          <div className="order-first lg:order-last mb-8 lg:mb-0 relative">
+          <div className="lg:mt-0 mb-8 lg:mb-0 relative">
             <div className="aspect-[4/3] bg-architect-light rounded-lg overflow-hidden shadow-xl">
               <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait von Nikolaus Schmid" className="w-full h-full object-cover" />
             </div>
