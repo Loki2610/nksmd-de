@@ -1,7 +1,6 @@
-
 import React from 'react';
+import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-
 const companyReferences = [{
   name: "HUF HAUS",
   logo: "/lovable-uploads/af567617-eb60-4060-96d7-ebfd4702111f.png"
@@ -12,7 +11,6 @@ const companyReferences = [{
   name: "OKAL",
   logo: "/lovable-uploads/feaead92-ddad-4b55-9fab-e06ce90f7a77.png"
 }];
-
 const ProjectsSection = () => {
   return <section id="projects" className="py-16 bg-architect-light">
       <div className="section-container">
@@ -22,20 +20,15 @@ const ProjectsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {companyReferences.map((company, index) => (
-            <div key={index} className="flex items-center justify-center h-[150px]">
-              <AspectRatio ratio={3 / 1} className="w-full max-w-[220px]">
-                <img 
-                  src={company.logo} 
-                  alt={`${company.name} Logo`} 
-                  className="w-full h-full object-contain" 
-                />
-              </AspectRatio>
-            </div>
-          ))}
+          {companyReferences.map((company, index) => <Card key={index} className="overflow-hidden h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <CardContent className="p-6 flex items-center justify-center h-[150px]">
+                <AspectRatio ratio={3 / 1} className="w-full max-w-[220px]">
+                  <img src={company.logo} alt={`${company.name} Logo`} className="w-full h-full object-contain" />
+                </AspectRatio>
+              </CardContent>
+            </Card>)}
         </div>
       </div>
     </section>;
 };
-
 export default ProjectsSection;
