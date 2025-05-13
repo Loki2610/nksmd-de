@@ -2,12 +2,23 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
+
 const Header = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return <header className="bg-white py-6 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <h1 className="text-3xl font-bold text-architect-dark">
+            <h1 
+              className="text-3xl font-bold text-architect-dark cursor-pointer" 
+              onClick={scrollToTop}
+            >
               <span className="">NKSMD</span>
             </h1>
             
@@ -36,4 +47,5 @@ const Header = () => {
       </div>
     </header>;
 };
+
 export default Header;
