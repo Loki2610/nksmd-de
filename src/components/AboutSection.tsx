@@ -80,7 +80,7 @@ const AboutSection = () => {
             </div>
           </div>
           
-          <div className="relative lg:mt-10">
+          <div className="relative lg:mt-0">
             <div className="aspect-[4/3] bg-architect-light rounded-lg overflow-hidden shadow-xl">
               <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait von Nikolaus Schmid" className="w-full h-full object-cover" />
             </div>
