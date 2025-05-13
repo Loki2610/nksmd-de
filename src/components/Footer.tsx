@@ -1,7 +1,5 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-architect-dark py-10 text-gray-300">
@@ -14,7 +12,7 @@ const Footer = () => {
           
           <div className="flex flex-col md:flex-row gap-6 md:gap-10 text-sm">
             <a href="#services" className="hover:text-white">Leistungen</a>
-            <a href="#projects" className="hover:text-white">Projekte</a>
+            <a href="#projects" className="hover:text-white">Referenzen</a>
             <a href="#about" className="hover:text-white">Über mich</a>
             <a href="#contact" className="hover:text-white">Kontakt</a>
           </div>
