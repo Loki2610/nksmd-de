@@ -1,8 +1,16 @@
+
 import React from 'react';
-import { FileText, FileCheck, ClipboardList, Handshake } from "lucide-react";
+import { FileCheck, ClipboardList, Handshake, PenTool, Ruler, Scroll } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
 const servicesData = [{
-  icon: <FileText className="h-8 w-8 text-architect-accent" />,
+  icon: (
+    <div className="flex items-center gap-1">
+      <PenTool className="h-6 w-6 text-architect-accent" />
+      <Ruler className="h-6 w-6 text-architect-accent" />
+      <Scroll className="h-6 w-6 text-architect-accent" />
+    </div>
+  ),
   title: "Entwurfs- und Genehmigungsplanung",
   description: "Professionelle und effiziente Erstellung aller für das Bauvorhaben erforderlichen Planungsunterlagen und Genehmigungsanträge."
 }, {
@@ -18,6 +26,7 @@ const servicesData = [{
   title: "B2B-Kooperationen",
   description: "Langfristige Partnerschaften mit Bauunternehmen und Fertighausherstellern für optimierte Prozesse und Kosteneinsparungen."
 }];
+
 const ServicesSection = () => {
   return <section id="services" className="py-16 bg-white">
       <div className="section-container">
@@ -42,4 +51,5 @@ professionell, zuverlässig und termingerecht.
       </div>
     </section>;
 };
+
 export default ServicesSection;
