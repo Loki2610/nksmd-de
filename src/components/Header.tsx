@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
-
 const Header = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -10,15 +8,11 @@ const Header = () => {
       behavior: 'smooth'
     });
   };
-
   return <header className="bg-white py-6 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <h1 
-              className="text-3xl font-bold text-architect-dark cursor-pointer" 
-              onClick={scrollToTop}
-            >
+            <h1 className="text-3xl font-bold text-architect-dark cursor-pointer" onClick={scrollToTop}>
               <span className="">NKSMD</span>
             </h1>
             
@@ -32,9 +26,7 @@ const Header = () => {
             <a href="#services" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
               Leistungen
             </a>
-            <a href="#projects" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
-              Projekte
-            </a>
+            <a href="#projects" className="text-sm font-medium text-architect-dark hover:text-architect-accent">Referenzen</a>
             <a href="#about" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
               Über mich
             </a>
@@ -47,5 +39,4 @@ const Header = () => {
       </div>
     </header>;
 };
-
 export default Header;
