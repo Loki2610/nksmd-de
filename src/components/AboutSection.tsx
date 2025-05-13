@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { User, Construction, GraduationCap, Briefcase } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-
 const AboutSection = () => {
   return <section id="about" className="py-16 bg-white">
       <div className="section-container">
@@ -35,7 +33,7 @@ const AboutSection = () => {
                 </div>
               </div>
               
-              <div className="flex items-start">
+              <div className="flex items-start, width: 200px">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <Briefcase className="h-6 w-6 text-architect-accent" />
                 </div>
@@ -81,7 +79,7 @@ const AboutSection = () => {
           
           <div className="relative lg:mt-16">
             <div className="bg-architect-light rounded-lg overflow-hidden shadow-xl max-h-[350px]">
-              <AspectRatio ratio={4/3} className="h-full">
+              <AspectRatio ratio={4 / 3} className="h-full">
                 <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait von Nikolaus Schmid" className="w-full h-full object-cover" />
               </AspectRatio>
             </div>
@@ -94,5 +92,4 @@ const AboutSection = () => {
       </div>
     </section>;
 };
-
 export default AboutSection;
