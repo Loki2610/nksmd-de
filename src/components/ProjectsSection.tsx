@@ -6,17 +6,14 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 const companyReferences = [
   {
     name: "Enter",
-    description: "Langjährige Zusammenarbeit bei der Planung und Genehmigung zahlreicher hochwertiger Gebäude.",
     logo: "/lovable-uploads/7aa5ff54-4622-4daa-89b5-469bf0b17feb.png"
   },
   {
     name: "HUF HAUS",
-    description: "Umfassende Beratung und Begleitung bei bauordnungsrechtlichen Fragestellungen für HUF HAUS Projekte.",
     logo: "/lovable-uploads/af567617-eb60-4060-96d7-ebfd4702111f.png"
   },
   {
     name: "OKAL",
-    description: "Erfolgreiche Zusammenarbeit bei der Realisierung von Bauvorhaben deutschlandweit.",
     logo: "/lovable-uploads/feaead92-ddad-4b55-9fab-e06ce90f7a77.png"
   }
 ];
@@ -35,14 +32,16 @@ const ProjectsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {companyReferences.map((company, index) => (
             <Card key={index} className="overflow-hidden h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-6 flex flex-col items-center">
-                <div className="w-full mb-6 h-28 flex items-center justify-center">
+              <CardContent className="p-6 flex flex-col items-center justify-center h-full">
+                <div className="w-full h-full flex items-center justify-center">
                   <AspectRatio ratio={3/1} className="w-full max-w-[220px]">
-                    <img src={company.logo} alt={`${company.name} Logo`} className="w-full h-full object-contain" />
+                    <img 
+                      src={company.logo} 
+                      alt={`${company.name} Logo`} 
+                      className="w-full h-full object-contain" 
+                    />
                   </AspectRatio>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-architect-dark">{company.name}</h3>
-                <p className="text-architect-muted text-center">{company.description}</p>
               </CardContent>
             </Card>
           ))}
