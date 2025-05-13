@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { User, Construction, GraduationCap, Briefcase } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -71,6 +72,7 @@ const AboutSection = () => {
                     <li>• Bauprojekte in ganz Deutschland & Österreich</li>
                     <li>• 5+ Jahre spezialisierte B2B-Erfahrung</li>
                     <li>• Effizienz- und prozessorientierte Arbeitsweise</li>
+                    <li>• BIM Modellierung und Visualisierung</li>
                   </ul>
                 </div>
               </div>
