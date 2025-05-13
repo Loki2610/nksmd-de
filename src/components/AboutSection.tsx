@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { User, Construction, GraduationCap, Briefcase } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-
 const AboutSection = () => {
   return <section id="about" className="py-16 bg-white">
       <div className="section-container">
@@ -90,5 +88,4 @@ const AboutSection = () => {
       </div>
     </section>;
 };
-
 export default AboutSection;
