@@ -1,16 +1,12 @@
-
 import React from 'react';
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
-  return (
-    <footer className="bg-architect-dark py-10 text-gray-300">
+  return <footer className="bg-architect-dark py-10 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-lg font-semibold text-white">NKSMD</p>
-            <p className="text-sm">Mitglied der Bayerischen Architektenkammer</p>
+            <p className="text-sm">Architektonische Expertise für Ihr Bauunternehmen </p>
           </div>
           
           <div className="flex flex-col md:flex-row gap-6 md:gap-10 text-sm">
@@ -29,8 +25,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
