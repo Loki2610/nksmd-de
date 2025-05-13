@@ -21,7 +21,7 @@ const AboutSection = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mt-8">
               <div className="flex items-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <GraduationCap className="h-6 w-6 text-architect-accent" />
@@ -80,8 +80,8 @@ const AboutSection = () => {
           </div>
           
           <div className="relative lg:mt-16">
-            <div className="bg-architect-light rounded-lg overflow-hidden shadow-xl max-h-[350px]">
-              <AspectRatio ratio={4/3} className="h-full">
+            <div className="bg-architect-light rounded-lg overflow-hidden shadow-xl max-h-[175px]">
+              <AspectRatio ratio={16/7} className="h-full">
                 <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait von Nikolaus Schmid" className="w-full h-full object-cover" />
               </AspectRatio>
             </div>
