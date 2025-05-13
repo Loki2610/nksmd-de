@@ -7,19 +7,17 @@ const AboutSection = () => {
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <div>
+            <div className="mb-8">
               <h2 className="text-3xl font-bold text-architect-dark mb-6">Über mich</h2>
-              <div className="flex flex-col space-y-4">
-                <p className="text-lg text-architect-muted">
-                  Mein Name ist Nikolaus Schmid. Als freiberuflicher Architekt und Mitglied der Bayerischen Architektenkammer biete ich seit über 5 Jahren spezialisierte Architekturdienstleistungen mit Schwerpunkt Entwurfs- und Genehmigungsplanung für Bauunternehmen und Fertighaushersteller an.
-                </p>
-                <p className="text-lg text-architect-muted">
-                  Mein Fokus liegt auf der effizienten Planung und dem reibungslosen Genehmigungsmanagement von Bauprojekten, damit Sie sich voll auf die Ausführung konzentrieren können.
-                </p>
-                <p className="text-lg text-architect-muted">
-                  Die langjährige Zusammenarbeit mit renommierten Firmen wie Huf Haus und zahlreiche erfolgreich abgeschlossene Projekte in Deutschland und Österreich belegen meine Expertise und Zuverlässigkeit.
-                </p>
-              </div>
+              <p className="text-lg text-architect-muted mb-4">
+                Mein Name ist Nikolaus Schmid. Als freiberuflicher Architekt und Mitglied der Bayerischen Architektenkammer biete ich seit über 5 Jahren spezialisierte Architekturdienstleistungen mit Schwerpunkt Entwurfs- und Genehmigungsplanung für Bauunternehmen und Fertighaushersteller an.
+              </p>
+              <p className="text-lg text-architect-muted mb-4">
+                Mein Fokus liegt auf der effizienten Planung und dem reibungslosen Genehmigungsmanagement von Bauprojekten, damit Sie sich voll auf die Ausführung konzentrieren können.
+              </p>
+              <p className="text-lg text-architect-muted">
+                Die langjährige Zusammenarbeit mit renommierten Firmen wie Huf Haus und zahlreiche erfolgreich abgeschlossene Projekte in Deutschland und Österreich belegen meine Expertise und Zuverlässigkeit.
+              </p>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
@@ -80,7 +78,7 @@ const AboutSection = () => {
             </div>
           </div>
           
-          <div className="relative lg:mt-0">
+          <div className="relative self-start">
             <div className="aspect-[4/3] bg-architect-light rounded-lg overflow-hidden shadow-xl">
               <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait von Nikolaus Schmid" className="w-full h-full object-cover" />
             </div>
