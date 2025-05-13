@@ -23,9 +23,7 @@ const ServicesSection = () => {
       <div className="section-container">
         <div className="content-container text-center mb-12">
           <h2 className="text-3xl font-bold text-architect-dark">Meine Dienstleistungen</h2>
-          <p className="mt-4 text-architect-muted">Spezialisierte Architekturdienstleistungen für Ihr Bauunternehmen - 
-professionell, zuverlässig und termingerecht.
-        </p>
+          <p className="mt-4 text-architect-muted">Spezialisierte Architekturdienstleistungen für Ihr Bauunternehmen - professionell, zuverlässig und termingerecht.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
