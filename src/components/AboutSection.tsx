@@ -85,10 +85,6 @@ const AboutSection = () => {
                 <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait von Nikolaus Schmid" className="w-full h-full object-cover" />
               </AspectRatio>
             </div>
-            <div className="absolute bottom-0 left-0 bg-white p-4 rounded-lg shadow-lg">
-              <p className="text-architect-dark font-medium">Seit 2020</p>
-              <p className="text-architect-muted text-sm">Freiberuflicher Architekt</p>
-            </div>
           </div>
         </div>
       </div>
