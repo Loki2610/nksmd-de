@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { User, Construction } from "lucide-react";
+import { User, Construction, GraduationCap, Briefcase } from "lucide-react";
 
 const AboutSection = () => {
   return (
@@ -11,7 +11,7 @@ const AboutSection = () => {
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-architect-dark mb-6">Über mich</h2>
               <p className="text-lg text-architect-muted mb-4">
-                Als freiberuflicher Architekt und Mitglied der Bayerischen Architektenkammer biete ich seit über 5 Jahren spezialisierte Architekturdienstleistungen für Bauunternehmen und Fertighaushersteller an.
+                Mein Name ist Nikolaus Schmid. Als freiberuflicher Architekt und Mitglied der Bayerischen Architektenkammer biete ich seit über 5 Jahren spezialisierte Architekturdienstleistungen mit Schwerpunkt Entwurfs- und Genehmigungsplanung für Bauunternehmen und Fertighaushersteller an.
               </p>
               <p className="text-lg text-architect-muted mb-4">
                 Mein Fokus liegt auf der effizienten Planung und dem reibungslosen Genehmigungsmanagement von Bauprojekten, damit Sie sich voll auf die Ausführung konzentrieren können.
@@ -22,6 +22,33 @@ const AboutSection = () => {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+              <div className="flex items-start">
+                <div className="bg-architect-light p-3 rounded-lg mr-4">
+                  <GraduationCap className="h-6 w-6 text-architect-accent" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-architect-dark mb-2">Ausbildung</h3>
+                  <ul className="text-architect-muted space-y-2">
+                    <li>• Bachelor an der Hochschule Trier</li>
+                    <li>• Master an der TU Berlin</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="bg-architect-light p-3 rounded-lg mr-4">
+                  <Briefcase className="h-6 w-6 text-architect-accent" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-architect-dark mb-2">Berufserfahrung</h3>
+                  <ul className="text-architect-muted space-y-2">
+                    <li>• Scheidt Kasprusch Architekten, Berlin</li>
+                    <li>• Cyrus Moser Architekten, Frankfurt</li>
+                    <li>• io-consultans (Industriebau, Generalplaner)</li>
+                  </ul>
+                </div>
+              </div>
+              
               <div className="flex items-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <User className="h-6 w-6 text-architect-accent" />
@@ -56,7 +83,7 @@ const AboutSection = () => {
             <div className="aspect-[4/3] bg-architect-light rounded-lg overflow-hidden shadow-xl">
               <img 
                 src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
-                alt="Portrait des Architekten" 
+                alt="Portrait von Nikolaus Schmid" 
                 className="w-full h-full object-cover"
               />
             </div>

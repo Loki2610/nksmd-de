@@ -19,7 +19,7 @@ const Header = () => {
               className="text-3xl font-bold text-architect-dark cursor-pointer" 
               onClick={scrollToTop}
             >
-              <span className="">NKSMD</span>
+              <span className="">Nikolaus Schmid</span>
             </h1>
             
             <div className="hidden md:flex items-center ml-6 text-sm text-architect-muted">
