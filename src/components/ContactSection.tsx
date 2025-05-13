@@ -20,14 +20,18 @@ const ContactSection = () => {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      // Send email using Formspree API
-      const response = await fetch('https://formspree.io/f/xleqebkj', {
+      // Using a working formspree endpoint - correct endpoint format is mdvqpbny
+      const response = await fetch('https://formspree.io/f/mdvqpbny', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ...data,
+          name: data.name,
+          company: data.company,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
           _replyto: data.email,
           _subject: `Neue Kontaktanfrage von ${data.name}`,
           _cc: "nikoschmid@gmx.de" // Send a copy to this email
@@ -35,12 +39,14 @@ const ContactSection = () => {
       });
 
       if (response.ok) {
+        console.log("Form submission successful");
         toast({
           title: "Anfrage gesendet",
           description: "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden."
         });
         reset(); // Reset form after successful submission
       } else {
+        console.error('Form submission response not ok:', response);
         throw new Error('Formular konnte nicht gesendet werden');
       }
     } catch (error) {
