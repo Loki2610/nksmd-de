@@ -21,7 +21,7 @@ const AboutSection = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
               <div className="flex items-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <GraduationCap className="h-6 w-6 text-architect-accent" />
