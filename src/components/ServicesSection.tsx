@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { PencilRuler, Stamp, ClipboardList, Handshake } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-
 const servicesData = [{
   icon: <PencilRuler className="h-8 w-8 text-architect-accent" />,
   title: "Entwurfs- und Genehmigungsplanung",
@@ -20,13 +18,12 @@ const servicesData = [{
   title: "B2B-Kooperationen",
   description: "Langfristige Partnerschaften mit Bauunternehmen und Fertighausherstellern für optimierte Prozesse und Kosteneinsparungen."
 }];
-
 const ServicesSection = () => {
   return <section id="services" className="py-16 bg-white">
       <div className="section-container">
         <div className="content-container text-center mb-12">
           <h2 className="text-3xl font-bold text-architect-dark">Meine Dienstleistungen</h2>
-          <p className="mt-4 text-architect-muted">Spezialisierte Architekturdienstleistungen für Ihr Bauunternehmen -
+          <p className="mt-4 text-architect-muted">Spezialisierte Architekturdienstleistungen für Ihr Bauunternehmen - 
 professionell, zuverlässig und termingerecht.
         </p>
         </div>
@@ -45,5 +42,4 @@ professionell, zuverlässig und termingerecht.
       </div>
     </section>;
 };
-
 export default ServicesSection;
