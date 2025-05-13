@@ -21,8 +21,8 @@ const AboutSection = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 gap-x-16 gap-y-8 mt-8">
-              <div className="flex items-start col-span-1">
+            <div className="flex flex-col space-y-6 mt-8">
+              <div className="flex items-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <GraduationCap className="h-6 w-6 text-architect-accent" />
                 </div>
@@ -35,7 +35,7 @@ const AboutSection = () => {
                 </div>
               </div>
               
-              <div className="flex items-start col-span-1 justify-start">
+              <div className="flex items-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <Briefcase className="h-6 w-6 text-architect-accent" />
                 </div>
@@ -49,7 +49,7 @@ const AboutSection = () => {
                 </div>
               </div>
               
-              <div className="flex items-start col-span-1">
+              <div className="flex items-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <User className="h-6 w-6 text-architect-accent" />
                 </div>
@@ -63,7 +63,7 @@ const AboutSection = () => {
                 </div>
               </div>
               
-              <div className="flex items-start col-span-1 justify-start">
+              <div className="flex items-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <Construction className="h-6 w-6 text-architect-accent" />
                 </div>
