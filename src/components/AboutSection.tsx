@@ -1,12 +1,14 @@
+
 import React from 'react';
 import { User, Construction, GraduationCap, Briefcase } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+
 const AboutSection = () => {
   return <section id="about" className="py-16 bg-white">
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <div className="mb-8">
+            <div className="mb-12">
               <h2 className="text-3xl font-bold text-architect-dark mb-6">Über mich</h2>
               <p className="text-lg text-architect-muted mb-4">
                 Mein Name ist Nikolaus Schmid. Als freiberuflicher Architekt und Mitglied der Bayerischen Architektenkammer biete ich seit über 5 Jahren spezialisierte Architekturdienstleistungen mit Schwerpunkt Entwurfs- und Genehmigungsplanung für Bauunternehmen und Fertighaushersteller an.
@@ -19,7 +21,7 @@ const AboutSection = () => {
               </p>
             </div>
             
-            <div className="flex flex-col space-y-6 mt-8">
+            <div className="flex flex-col space-y-6">
               <div className="flex items-start">
                 <div className="bg-architect-light p-3 rounded-lg mr-4">
                   <GraduationCap className="h-6 w-6 text-architect-accent" />
@@ -42,7 +44,7 @@ const AboutSection = () => {
                   <ul className="text-architect-muted space-y-2">
                     <li>• Scheidt Kasprusch Architekten, Berlin</li>
                     <li>• Cyrus Moser Architekten, Frankfurt</li>
-                    <li>• io-group, Heidelberg </li>
+                    <li>• io-group, Heidelberg </li>
                   </ul>
                 </div>
               </div>
@@ -88,4 +90,5 @@ const AboutSection = () => {
       </div>
     </section>;
 };
+
 export default AboutSection;
