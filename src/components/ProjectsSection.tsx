@@ -5,12 +5,12 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const companyReferences = [
   {
-    name: "Enter",
-    logo: "/lovable-uploads/7aa5ff54-4622-4daa-89b5-469bf0b17feb.png"
-  },
-  {
     name: "HUF HAUS",
     logo: "/lovable-uploads/af567617-eb60-4060-96d7-ebfd4702111f.png"
+  },
+  {
+    name: "Enter",
+    logo: "/lovable-uploads/7aa5ff54-4622-4daa-89b5-469bf0b17feb.png"
   },
   {
     name: "OKAL",
@@ -32,16 +32,14 @@ const ProjectsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {companyReferences.map((company, index) => (
             <Card key={index} className="overflow-hidden h-full border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-6 flex flex-col items-center justify-center h-full">
-                <div className="w-full h-full flex items-center justify-center">
-                  <AspectRatio ratio={3/1} className="w-full max-w-[220px]">
-                    <img 
-                      src={company.logo} 
-                      alt={`${company.name} Logo`} 
-                      className="w-full h-full object-contain" 
-                    />
-                  </AspectRatio>
-                </div>
+              <CardContent className="p-6 flex items-center justify-center h-[150px]">
+                <AspectRatio ratio={3/1} className="w-full max-w-[220px]">
+                  <img 
+                    src={company.logo} 
+                    alt={`${company.name} Logo`} 
+                    className="w-full h-full object-contain" 
+                  />
+                </AspectRatio>
               </CardContent>
             </Card>
           ))}
