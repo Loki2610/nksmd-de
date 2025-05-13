@@ -20,8 +20,10 @@ const ContactSection = () => {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      // Using a working formspree endpoint - correct endpoint format is mdvqpbny
-      const response = await fetch('https://formspree.io/f/mdvqpbny', {
+      console.log("Attempting form submission with data:", data);
+      
+      // Use the correct Formspree form ID format without the 'f/' part in the URL
+      const response = await fetch('https://formspree.io/mdvqpbny', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -38,6 +40,8 @@ const ContactSection = () => {
         })
       });
 
+      console.log("Form submission response:", response);
+
       if (response.ok) {
         console.log("Form submission successful");
         toast({
@@ -46,8 +50,9 @@ const ContactSection = () => {
         });
         reset(); // Reset form after successful submission
       } else {
-        console.error('Form submission response not ok:', response);
-        throw new Error('Formular konnte nicht gesendet werden');
+        const errorData = await response.json();
+        console.error('Form submission response not ok:', response, errorData);
+        throw new Error(`Formular konnte nicht gesendet werden: ${errorData?.error || ''}`);
       }
     } catch (error) {
       console.error('Form submission error:', error);
