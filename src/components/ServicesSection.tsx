@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PencilRuler, FileCheck, ClipboardList, Handshake } from "lucide-react";
+import { PencilRuler, Stamp, ClipboardList, Handshake } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const servicesData = [{
@@ -8,7 +8,7 @@ const servicesData = [{
   title: "Entwurfs- und Genehmigungsplanung",
   description: "Professionelle und effiziente Erstellung aller für das Bauvorhaben erforderlichen Planungsunterlagen und Genehmigungsanträge."
 }, {
-  icon: <FileCheck className="h-8 w-8 text-architect-accent" />,
+  icon: <Stamp className="h-8 w-8 text-architect-accent" />,
   title: "Behördenmanagement",
   description: "Komplette Übernahme der Kommunikation mit Behörden und Bearbeitung von Anforderungen für eine zügige Genehmigung."
 }, {
