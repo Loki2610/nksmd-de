@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { User, Construction, GraduationCap, Briefcase } from "lucide-react";
-
 const AboutSection = () => {
-  return (
-    <section id="about" className="py-16 bg-white">
+  return <section id="about" className="py-16 bg-white">
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -44,7 +41,7 @@ const AboutSection = () => {
                   <ul className="text-architect-muted space-y-2">
                     <li>• Scheidt Kasprusch Architekten, Berlin</li>
                     <li>• Cyrus Moser Architekten, Frankfurt</li>
-                    <li>• io-consultans (Industriebau, Generalplaner)</li>
+                    <li>• io-consultants, Heidelberg (Generalplaner für Industriebauten)</li>
                   </ul>
                 </div>
               </div>
@@ -56,9 +53,9 @@ const AboutSection = () => {
                 <div>
                   <h3 className="text-lg font-medium text-architect-dark mb-2">Qualifikationen</h3>
                   <ul className="text-architect-muted space-y-2">
-                    <li>• Staatlich anerkannter Architekt</li>
                     <li>• Mitglied der Bayerischen Architektenkammer</li>
-                    <li>• Spezialisierung in Genehmigungsplanung</li>
+                    <li>• EnergieEffizienz Experte</li>
+                    <li>• Spezialisierung in Entwurfs- und Genehmigungsplanung</li>
                   </ul>
                 </div>
               </div>
@@ -81,21 +78,15 @@ const AboutSection = () => {
           
           <div className="order-first lg:order-last mb-8 lg:mb-0 relative">
             <div className="aspect-[4/3] bg-architect-light rounded-lg overflow-hidden shadow-xl">
-              <img 
-                src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
-                alt="Portrait von Nikolaus Schmid" 
-                className="w-full h-full object-cover"
-              />
+              <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait von Nikolaus Schmid" className="w-full h-full object-cover" />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
-              <p className="text-architect-dark font-medium">Seit 2018</p>
+              <p className="text-architect-dark font-medium">Seit 2020</p>
               <p className="text-architect-muted text-sm">Freiberuflicher Architekt</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;

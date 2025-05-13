@@ -1,23 +1,20 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-
 const ContactSection = () => {
-  const { toast } = useToast();
-  
+  const {
+    toast
+  } = useToast();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Anfrage gesendet",
-      description: "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden.",
+      description: "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden."
     });
   };
-
-  return (
-    <section id="contact" className="py-16 bg-gray-50">
+  return <section id="contact" className="py-16 bg-gray-50">
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
@@ -63,12 +60,7 @@ const ContactSection = () => {
                 <label htmlFor="message" className="block text-sm font-medium text-architect-dark mb-1">
                   Nachricht
                 </label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihre Anfrage..." 
-                  rows={5} 
-                  required 
-                />
+                <Textarea id="message" placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihre Anfrage..." rows={5} required />
               </div>
               
               <div className="flex justify-center">
@@ -82,15 +74,11 @@ const ContactSection = () => {
           <div className="mt-10 text-center">
             <p className="text-architect-muted">
               Oder kontaktieren Sie mich direkt per Email unter: <br />
-              <a href="mailto:info@architekt-beispiel.de" className="text-architect-accent font-medium hover:underline">
-                info@architekt-beispiel.de
-              </a>
+              <a href="mailto:info@architekt-beispiel.de" className="text-architect-accent font-medium hover:underline">info@nksmd.de</a>
             </p>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ContactSection;
