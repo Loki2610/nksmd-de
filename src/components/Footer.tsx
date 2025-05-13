@@ -24,7 +24,7 @@ const Footer = () => {
           <p className="text-sm">© {currentYear} NKSMD. Alle Rechte vorbehalten.</p>
           <div className="mt-4 md:mt-0 text-sm">
             <Link to="/impressum" className="hover:text-white mr-6">Impressum</Link>
-            <a href="#" className="hover:text-white">Datenschutz</a>
+            <Link to="/datenschutz" className="hover:text-white">Datenschutz</Link>
           </div>
         </div>
       </div>
