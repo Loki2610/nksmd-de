@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p className="text-lg font-semibold text-white">Architekturbüro</p>
+            <p className="text-lg font-semibold text-white">NKSMD</p>
             <p className="text-sm">Mitglied der Bayerischen Architektenkammer</p>
           </div>
           
@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm">© {currentYear} Architekturbüro. Alle Rechte vorbehalten.</p>
+          <p className="text-sm">© {currentYear} NKSMD. Alle Rechte vorbehalten.</p>
           <div className="mt-4 md:mt-0 text-sm">
             <a href="#" className="hover:text-white mr-6">Datenschutz</a>
             <a href="#" className="hover:text-white">Impressum</a>
