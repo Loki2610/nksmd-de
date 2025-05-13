@@ -1,12 +1,15 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+
 const ContactSection = () => {
   const {
     toast
   } = useToast();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
@@ -14,6 +17,7 @@ const ContactSection = () => {
       description: "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden."
     });
   };
+
   return <section id="contact" className="py-16 bg-gray-50">
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
@@ -64,7 +68,7 @@ const ContactSection = () => {
               </div>
               
               <div className="flex justify-center">
-                <Button type="submit" className="cta-button text-base py-3 px-10">
+                <Button type="submit" className="cta-button text-base flex items-center justify-center h-12">
                   Anfrage absenden
                 </Button>
               </div>
@@ -81,4 +85,5 @@ const ContactSection = () => {
       </div>
     </section>;
 };
+
 export default ContactSection;
