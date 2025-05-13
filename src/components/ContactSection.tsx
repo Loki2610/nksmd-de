@@ -4,18 +4,53 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useForm } from "react-hook-form";
+
+type FormValues = {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  message: string;
+};
 
 const ContactSection = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FormValues>();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Anfrage gesendet",
-      description: "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden."
-    });
+  const onSubmit = async (data: FormValues) => {
+    try {
+      // Send email using Formspree API
+      const response = await fetch('https://formspree.io/f/xleqebkj', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...data,
+          _replyto: data.email,
+          _subject: `Neue Kontaktanfrage von ${data.name}`,
+          _cc: "nikoschmid@gmx.de" // Send a copy to this email
+        })
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Anfrage gesendet",
+          description: "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden."
+        });
+        reset(); // Reset form after successful submission
+      } else {
+        throw new Error('Formular konnte nicht gesendet werden');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Fehler",
+        description: "Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es später noch einmal.",
+        variant: "destructive"
+      });
+    }
   };
 
   return <section id="contact" className="py-16 bg-gray-50">
@@ -29,19 +64,27 @@ const ContactSection = () => {
           </div>
           
           <div className="bg-white rounded-lg shadow-lg p-8">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-architect-dark mb-1">
                     Name
                   </label>
-                  <Input id="name" placeholder="Ihr Name" required />
+                  <Input 
+                    id="name" 
+                    placeholder="Ihr Name" 
+                    {...register("name", { required: true })} 
+                  />
                 </div>
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-architect-dark mb-1">
                     Unternehmen
                   </label>
-                  <Input id="company" placeholder="Ihr Unternehmen" required />
+                  <Input 
+                    id="company" 
+                    placeholder="Ihr Unternehmen" 
+                    {...register("company", { required: true })} 
+                  />
                 </div>
               </div>
               
@@ -50,13 +93,22 @@ const ContactSection = () => {
                   <label htmlFor="email" className="block text-sm font-medium text-architect-dark mb-1">
                     E-Mail
                   </label>
-                  <Input id="email" type="email" placeholder="ihre-email@beispiel.de" required />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="ihre-email@beispiel.de" 
+                    {...register("email", { required: true })} 
+                  />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-architect-dark mb-1">
                     Telefon
                   </label>
-                  <Input id="phone" placeholder="Ihre Telefonnummer" />
+                  <Input 
+                    id="phone" 
+                    placeholder="Ihre Telefonnummer" 
+                    {...register("phone")} 
+                  />
                 </div>
               </div>
               
@@ -64,12 +116,21 @@ const ContactSection = () => {
                 <label htmlFor="message" className="block text-sm font-medium text-architect-dark mb-1">
                   Nachricht
                 </label>
-                <Textarea id="message" placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihre Anfrage..." rows={5} required />
+                <Textarea 
+                  id="message" 
+                  placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihre Anfrage..." 
+                  rows={5} 
+                  {...register("message", { required: true })} 
+                />
               </div>
               
               <div className="flex justify-center">
-                <Button type="submit" className="cta-button text-base flex items-center justify-center h-12">
-                  Anfrage absenden
+                <Button 
+                  type="submit" 
+                  className="cta-button text-base flex items-center justify-center h-12"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Wird gesendet..." : "Anfrage absenden"}
                 </Button>
               </div>
             </form>
