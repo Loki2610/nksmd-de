@@ -15,8 +15,8 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        <ServicesSection />
         <ProjectsSection />
+        <ServicesSection />
         <BenefitsSection />
         <AboutSection />
         <ContactSection />
@@ -27,3 +27,4 @@ const Index = () => {
 };
 
 export default Index;
+
