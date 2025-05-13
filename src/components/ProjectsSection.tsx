@@ -11,7 +11,7 @@ const companyReferences = [{
   logo: "/lovable-uploads/7aa5ff54-4622-4daa-89b5-469bf0b17feb.png"
 }, {
   name: "OKAL",
-  logo: "/lovable-uploads/feaead92-ddad-4b55-9fab-e06ce90f7a77.png"
+  logo: "/lovable-uploads/d261fec3-cacf-4a59-8b9c-4999702cca05.png"
 }];
 
 const ProjectsSection = () => {
