@@ -14,6 +14,7 @@ const Header = () => {
   return <header className="bg-white py-6 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
+          {/* Left section with logo and location */}
           <div className="flex items-center">
             <h1 className="text-3xl font-bold text-architect-dark cursor-pointer" onClick={scrollToTop}>
               <span className="">NKSMD</span>
@@ -25,17 +26,23 @@ const Header = () => {
             </div>
           </div>
           
-          <nav className="hidden md:flex items-center">
-            <div className="flex space-x-10 mr-10">
+          {/* Center section with navigation links */}
+          <div className="hidden md:flex items-center justify-center flex-1">
+            <div className="flex space-x-10">
               <a href="#services" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
                 Leistungen
               </a>
-              <a href="#projects" className="text-sm font-medium text-architect-dark hover:text-architect-accent">Referenzen</a>
+              <a href="#projects" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
+                Referenzen
+              </a>
               <a href="#about" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
                 Über mich
               </a>
             </div>
-            
+          </div>
+          
+          {/* Right section with contact info and button */}
+          <nav className="hidden md:flex items-center">
             <div className="hidden lg:flex items-center space-x-6 text-sm text-architect-muted mr-6">
               <a href="mailto:info@nksmd.de" className="flex items-center hover:text-architect-accent">
                 <Mail className="h-4 w-4 mr-1" />
