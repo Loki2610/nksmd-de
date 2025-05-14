@@ -31,8 +31,8 @@ const ContactSection = () => {
     try {
       console.log("Attempting form submission with data:", data);
 
-      // Use FormSubmit's endpoint with your email
-      const response = await fetch('https://formsubmit.co/info@nksmd.de', {
+      // Use FormSubmit's endpoint with your email - using the ajax format
+      const response = await fetch('https://formsubmit.co/ajax/info@nksmd.de', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,6 +50,10 @@ const ContactSection = () => {
       });
       
       console.log("Form submission response:", response);
+      
+      const responseData = await response.json();
+      console.log("Response data:", responseData);
+      
       if (response.ok) {
         console.log("Form submission successful");
         toast({
@@ -58,9 +62,8 @@ const ContactSection = () => {
         });
         reset(); // Reset form after successful submission
       } else {
-        const errorData = await response.json();
-        console.error('Form submission response not ok:', response, errorData);
-        throw new Error(`Formular konnte nicht gesendet werden: ${errorData?.error || ''}`);
+        console.error('Form submission response not ok:', response, responseData);
+        throw new Error(`Formular konnte nicht gesendet werden: ${responseData?.message || ''}`);
       }
     } catch (error) {
       console.error('Form submission error:', error);
