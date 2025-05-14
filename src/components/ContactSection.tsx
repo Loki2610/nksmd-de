@@ -1,11 +1,9 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
-
 type FormValues = {
   name: string;
   company: string;
@@ -13,15 +11,22 @@ type FormValues = {
   phone: string;
   message: string;
 };
-
 const ContactSection = () => {
-  const { toast } = useToast();
-  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FormValues>();
-
+  const {
+    toast
+  } = useToast();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: {
+      isSubmitting
+    }
+  } = useForm<FormValues>();
   const onSubmit = async (data: FormValues) => {
     try {
       console.log("Attempting form submission with data:", data);
-      
+
       // Use the correct Formspree form ID format without the 'f/' part in the URL
       const response = await fetch('https://formspree.io/mdvqpbny', {
         method: 'POST',
@@ -39,9 +44,7 @@ const ContactSection = () => {
           _cc: "nikoschmid@gmx.de" // Send a copy to this email
         })
       });
-
       console.log("Form submission response:", response);
-
       if (response.ok) {
         console.log("Form submission successful");
         toast({
@@ -63,7 +66,6 @@ const ContactSection = () => {
       });
     }
   };
-
   return <section id="contact" className="py-16 bg-gray-50">
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
@@ -81,21 +83,17 @@ const ContactSection = () => {
                   <label htmlFor="name" className="block text-sm font-medium text-architect-dark mb-1">
                     Name
                   </label>
-                  <Input 
-                    id="name" 
-                    placeholder="Ihr Name" 
-                    {...register("name", { required: true })} 
-                  />
+                  <Input id="name" placeholder="Ihr Name" {...register("name", {
+                  required: true
+                })} />
                 </div>
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-architect-dark mb-1">
                     Unternehmen
                   </label>
-                  <Input 
-                    id="company" 
-                    placeholder="Ihr Unternehmen" 
-                    {...register("company", { required: true })} 
-                  />
+                  <Input id="company" placeholder="Ihr Unternehmen" {...register("company", {
+                  required: true
+                })} />
                 </div>
               </div>
               
@@ -104,22 +102,15 @@ const ContactSection = () => {
                   <label htmlFor="email" className="block text-sm font-medium text-architect-dark mb-1">
                     E-Mail
                   </label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="ihre-email@beispiel.de" 
-                    {...register("email", { required: true })} 
-                  />
+                  <Input id="email" type="email" placeholder="ihre-email@beispiel.de" {...register("email", {
+                  required: true
+                })} />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-architect-dark mb-1">
                     Telefon
                   </label>
-                  <Input 
-                    id="phone" 
-                    placeholder="Ihre Telefonnummer" 
-                    {...register("phone")} 
-                  />
+                  <Input id="phone" placeholder="Ihre Telefonnummer" {...register("phone")} />
                 </div>
               </div>
               
@@ -127,20 +118,13 @@ const ContactSection = () => {
                 <label htmlFor="message" className="block text-sm font-medium text-architect-dark mb-1">
                   Nachricht
                 </label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihre Anfrage..." 
-                  rows={5} 
-                  {...register("message", { required: true })} 
-                />
+                <Textarea id="message" placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihre Anfrage..." rows={5} {...register("message", {
+                required: true
+              })} />
               </div>
               
               <div className="flex justify-center">
-                <Button 
-                  type="submit" 
-                  className="cta-button text-base flex items-center justify-center h-12"
-                  disabled={isSubmitting}
-                >
+                <Button type="submit" className="cta-button text-base flex items-center justify-center h-12" disabled={isSubmitting}>
                   {isSubmitting ? "Wird gesendet..." : "Anfrage absenden"}
                 </Button>
               </div>
@@ -150,16 +134,15 @@ const ContactSection = () => {
           <div className="mt-10 text-center">
             <p className="text-architect-muted mb-2 text-lg">
               Oder kontaktieren Sie mich direkt per Email unter: <br />
-              <a href="mailto:info@nksmd.de" className="text-architect-accent font-medium hover:underline text-xl">info@nksmd.de</a>
+              <a href="mailto:info@nksmd.de" className="text-architect-accent font-bold hover:underline text-xl">info@nksmd.de</a>
             </p>
             <p className="text-architect-muted text-lg">
               Telefonisch erreichbar unter: <br />
-              <a href="tel:+4917699351415" className="text-architect-accent font-medium hover:underline text-xl">+49 176 99351415</a>
+              <a href="tel:+4917699351415" className="text-architect-accent font-bold hover:underline text-xl">+49 176 99351415</a>
             </p>
           </div>
         </div>
       </div>
     </section>;
 };
-
 export default ContactSection;
