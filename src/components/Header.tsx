@@ -19,14 +19,14 @@ const Header = () => {
               <span className="">NKSMD</span>
             </h1>
             
-            <div className="hidden md:flex items-center ml-6 text-sm text-architect-muted">
+            <div className="hidden md:flex items-center ml-6 mr-10 text-sm text-architect-muted">
               <MapPin className="h-4 w-4 mr-1" />
               <span>Bayern, Deutschland</span>
             </div>
           </div>
           
           <nav className="hidden md:flex items-center">
-            <div className="flex space-x-10 mr-6">
+            <div className="flex space-x-10 mr-10">
               <a href="#services" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
                 Leistungen
               </a>
