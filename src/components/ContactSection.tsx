@@ -146,7 +146,7 @@ const ContactSection = () => {
             </p>
             <p className="text-architect-muted text-lg">
               Telefonisch erreichbar unter: <br />
-              <a href="tel:+4917699351415" className="text-architect-accent font-medium hover:underline text-xl">+49 176 99351415</a>
+              <a href="tel:+4915566008115" className="text-architect-accent font-medium hover:underline text-xl">+49 155 66008115</a>
             </p>
           </div>
         </div>

@@ -72,7 +72,7 @@ const Datenschutz = () => {
               Musterstraße 123<br />
               12345 Musterstadt<br /><br />
               
-              Telefon: +49 123 45678910<br />
+              Telefon: +49 155 66008115<br />
               E-Mail: hallo@nksmd.de
             </p>
           </div>
