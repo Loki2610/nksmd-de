@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { MapPin, Mail, Phone } from "lucide-react";
@@ -21,7 +22,7 @@ const Header = () => {
             
             <div className="hidden md:flex items-center ml-6 mr-10 text-sm text-architect-muted">
               <MapPin className="h-4 w-4 mr-1" />
-              <span>Lindau, Deutschland</span>
+              <span>Bayern</span>
             </div>
           </div>
           
