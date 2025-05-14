@@ -25,30 +25,32 @@ const Header = () => {
             </div>
           </div>
           
-          <div className="hidden lg:flex items-center space-x-6 text-sm text-architect-muted">
-            <a href="mailto:info@nksmd.de" className="flex items-center hover:text-architect-accent">
-              <Mail className="h-4 w-4 mr-1" />
-              <span>info@nksmd.de</span>
-            </a>
-            <a href="tel:+4915156789012" className="flex items-center hover:text-architect-accent">
-              <Phone className="h-4 w-4 mr-1" />
-              <span>+49 151 56789012</span>
-            </a>
-          </div>
-          
-          <nav className="hidden md:flex space-x-10">
-            <a href="#services" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
-              Leistungen
-            </a>
-            <a href="#projects" className="text-sm font-medium text-architect-dark hover:text-architect-accent">Referenzen</a>
-            <a href="#about" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
-              Über mich
-            </a>
+          <nav className="hidden md:flex items-center">
+            <div className="flex space-x-10 mr-6">
+              <a href="#services" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
+                Leistungen
+              </a>
+              <a href="#projects" className="text-sm font-medium text-architect-dark hover:text-architect-accent">Referenzen</a>
+              <a href="#about" className="text-sm font-medium text-architect-dark hover:text-architect-accent">
+                Über mich
+              </a>
+            </div>
+            
+            <div className="hidden lg:flex items-center space-x-6 text-sm text-architect-muted mr-6">
+              <a href="mailto:info@nksmd.de" className="flex items-center hover:text-architect-accent">
+                <Mail className="h-4 w-4 mr-1" />
+                <span>info@nksmd.de</span>
+              </a>
+              <a href="tel:+4915156789012" className="flex items-center hover:text-architect-accent">
+                <Phone className="h-4 w-4 mr-1" />
+                <span>+49 151 56789012</span>
+              </a>
+            </div>
+            
+            <Button asChild className="bg-architect-dark hover:bg-opacity-90 text-white">
+              <a href="#contact">Kontakt</a>
+            </Button>
           </nav>
-          
-          <Button asChild className="bg-architect-dark hover:bg-opacity-90 text-white">
-            <a href="#contact">Kontakt</a>
-          </Button>
         </div>
       </div>
     </header>;
