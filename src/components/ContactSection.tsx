@@ -1,9 +1,11 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
+
 type FormValues = {
   name: string;
   company: string;
@@ -11,6 +13,7 @@ type FormValues = {
   phone: string;
   message: string;
 };
+
 const ContactSection = () => {
   const {
     toast
@@ -23,15 +26,17 @@ const ContactSection = () => {
       isSubmitting
     }
   } = useForm<FormValues>();
+
   const onSubmit = async (data: FormValues) => {
     try {
       console.log("Attempting form submission with data:", data);
 
-      // Use the correct Formspree form ID format without the 'f/' part in the URL
-      const response = await fetch('https://formspree.io/mdvqpbny', {
+      // Use FormSubmit's endpoint with your email
+      const response = await fetch('https://formsubmit.co/info@nksmd.de', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           name: data.name,
@@ -39,11 +44,11 @@ const ContactSection = () => {
           email: data.email,
           phone: data.phone,
           message: data.message,
-          _replyto: data.email,
           _subject: `Neue Kontaktanfrage von ${data.name}`,
           _cc: "nikoschmid@gmx.de" // Send a copy to this email
         })
       });
+      
       console.log("Form submission response:", response);
       if (response.ok) {
         console.log("Form submission successful");
@@ -66,6 +71,7 @@ const ContactSection = () => {
       });
     }
   };
+
   return <section id="contact" className="py-16 bg-gray-50">
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
@@ -145,4 +151,5 @@ const ContactSection = () => {
       </div>
     </section>;
 };
+
 export default ContactSection;
