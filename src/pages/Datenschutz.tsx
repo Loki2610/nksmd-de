@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import Footer from '../components/Footer';
@@ -69,8 +68,8 @@ const Datenschutz = () => {
               
               Nikolaus Schmid<br />
               Freiberuflicher Architekt<br />
-              Musterstraße 123<br />
-              12345 Musterstadt<br /><br />
+              Poststraße 1<br />
+              88131 Lindau<br /><br />
               
               Telefon: +49 155 66008115<br />
               E-Mail: hallo@nksmd.de

@@ -27,8 +27,8 @@ const Impressum = () => {
             <p>
               Nikolaus Schmid<br />
               Freiberuflicher Architekt<br />
-              Musterstraße 123<br />
-              12345 Musterstadt
+              Poststraße 1<br />
+              88131 Lindau
             </p>
 
             <h2 className="text-xl font-semibold mt-6 mb-3">Kontakt</h2>
