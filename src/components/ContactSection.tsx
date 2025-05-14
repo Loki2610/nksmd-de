@@ -31,8 +31,8 @@ const ContactSection = () => {
     try {
       console.log("Attempting form submission with data:", data);
 
-      // Use FormSubmit's endpoint with your email - using the ajax format
-      const response = await fetch('https://formsubmit.co/ajax/info@nksmd.de', {
+      // Updated to send emails only to nikoschmid@gmx.de
+      const response = await fetch('https://formsubmit.co/ajax/nikoschmid@gmx.de', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,8 +44,7 @@ const ContactSection = () => {
           email: data.email,
           phone: data.phone,
           message: data.message,
-          _subject: `Neue Kontaktanfrage von ${data.name}`,
-          _cc: "nikoschmid@gmx.de" // Send a copy to this email
+          _subject: `Neue Kontaktanfrage von ${data.name}`
         })
       });
       
@@ -143,7 +142,7 @@ const ContactSection = () => {
           <div className="mt-10 text-center">
             <p className="text-architect-muted mb-2 text-lg">
               Oder kontaktieren Sie mich direkt per Email unter: <br />
-              <a href="mailto:info@nksmd.de" className="text-architect-accent font-medium hover:underline text-xl">info@nksmd.de</a>
+              <a href="mailto:nikoschmid@gmx.de" className="text-architect-accent font-medium hover:underline text-xl">nikoschmid@gmx.de</a>
             </p>
             <p className="text-architect-muted text-lg">
               Telefonisch erreichbar unter: <br />
