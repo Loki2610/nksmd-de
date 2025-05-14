@@ -34,7 +34,7 @@ const Impressum = () => {
             <h2 className="text-xl font-semibold mt-6 mb-3">Kontakt</h2>
             <p>
               Telefon: +49 123 45678910<br />
-              E-Mail: info@nksmd.de
+              E-Mail: hallo@nksmd.de
             </p>
 
             <h2 className="text-xl font-semibold mt-6 mb-3">Berufsbezeichnung und berufsrechtliche Regelungen</h2>

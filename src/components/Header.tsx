@@ -44,9 +44,9 @@ const Header = () => {
           {/* Right section with contact info and button */}
           <nav className="hidden md:flex items-center">
             <div className="hidden lg:flex items-center space-x-6 text-sm text-architect-muted mr-6">
-              <a href="mailto:info@nksmd.de" className="flex items-center hover:text-architect-accent">
+              <a href="mailto:hallo@nksmd.de" className="flex items-center hover:text-architect-accent">
                 <Mail className="h-4 w-4 mr-1" />
-                <span>info@nksmd.de</span>
+                <span>hallo@nksmd.de</span>
               </a>
               <a href="tel:+4915156789012" className="flex items-center hover:text-architect-accent">
                 <Phone className="h-4 w-4 mr-1" />

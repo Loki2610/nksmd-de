@@ -73,7 +73,7 @@ const Datenschutz = () => {
               12345 Musterstadt<br /><br />
               
               Telefon: +49 123 45678910<br />
-              E-Mail: info@nksmd.de
+              E-Mail: hallo@nksmd.de
             </p>
           </div>
         </div>
