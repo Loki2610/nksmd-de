@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,51 +25,47 @@ const ContactSection = () => {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      console.log("Form submission started with data:", data);
+      console.log("Attempting form submission with data:", data);
 
-      // Create FormData object for FormSubmit.co
-      const formData = new FormData();
-      formData.append('name', data.name);
-      formData.append('company', data.company);
-      formData.append('email', data.email);
-      formData.append('phone', data.phone || '');
-      formData.append('message', data.message);
-      formData.append('_subject', `Neue Kontaktanfrage von ${data.name} - ${data.company}`);
-      formData.append('_captcha', 'false');
-      formData.append('_template', 'table');
-      formData.append('_next', window.location.origin + '?submitted=true');
-
-      console.log("Sending FormData to FormSubmit.co:");
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
-      }
-
-      const response = await fetch('https://formsubmit.co/hallo@nksmd.de', {
+      // Use FormSubmit's endpoint with your email - using the ajax format
+      const response = await fetch('https://formsubmit.co/ajax/info@nksmd.de', {
         method: 'POST',
-        body: formData
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: data.name,
+          company: data.company,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+          _subject: `Neue Kontaktanfrage von ${data.name}`,
+          _cc: "nikoschmid@gmx.de" // Send a copy to this email
+        })
       });
       
-      console.log("FormSubmit.co response status:", response.status);
-      console.log("FormSubmit.co response URL:", response.url);
+      console.log("Form submission response:", response);
+      
+      const responseData = await response.json();
+      console.log("Response data:", responseData);
       
       if (response.ok) {
         console.log("Form submission successful");
         toast({
-          title: "Anfrage erfolgreich gesendet",
+          title: "Anfrage gesendet",
           description: "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden."
         });
-        reset();
+        reset(); // Reset form after successful submission
       } else {
-        console.error('FormSubmit.co returned error status:', response.status);
-        throw new Error(`Formular konnte nicht gesendet werden (Status: ${response.status})`);
+        console.error('Form submission response not ok:', response, responseData);
+        throw new Error(`Formular konnte nicht gesendet werden: ${responseData?.message || ''}`);
       }
     } catch (error) {
-      console.error('Form submission error details:', error);
-      
-      // Show error toast with fallback option
+      console.error('Form submission error:', error);
       toast({
-        title: "Fehler beim Senden",
-        description: "Es gab ein Problem beim Senden Ihrer Anfrage. Sie können mich auch direkt per E-Mail kontaktieren.",
+        title: "Fehler",
+        description: "Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es später noch einmal.",
         variant: "destructive"
       });
     }
@@ -172,19 +169,19 @@ const ContactSection = () => {
               <p className="text-architect-muted mb-2 text-lg">
                 Direkte E-Mail: <br />
                 <a 
-                  href="mailto:hallo@nksmd.de?subject=Kontaktanfrage%20über%20Website&body=Hallo,%0D%0A%0D%0AIch%20interessiere%20mich%20für%20Ihre%20Dienstleistungen.%0D%0A%0D%0AVielen%20Dank!" 
+                  href="mailto:info@nksmd.de?subject=Kontaktanfrage%20über%20Website&body=Hallo,%0D%0A%0D%0AIch%20interessiere%20mich%20für%20Ihre%20Dienstleistungen.%0D%0A%0D%0AVielen%20Dank!" 
                   className="text-architect-accent font-medium hover:underline text-xl"
                 >
-                  hallo@nksmd.de
+                  info@nksmd.de
                 </a>
               </p>
               <p className="text-architect-muted text-lg">
                 Telefon: <br />
                 <a 
-                  href="tel:+4915566008115" 
+                  href="tel:+4917699351415" 
                   className="text-architect-accent font-medium hover:underline text-xl"
                 >
-                  +49 155 66008115
+                  +49 176 99351415
                 </a>
               </p>
             </div>
