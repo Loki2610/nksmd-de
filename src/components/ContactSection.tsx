@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,50 +16,40 @@ type FormValues = {
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const hiddenFormRef = useRef<HTMLFormElement>(null);
   const {
     register,
     handleSubmit,
     reset,
-    formState: { isSubmitting }
+    formState: { isSubmitting, errors }
   } = useForm<FormValues>();
 
   const onSubmit = async (data: FormValues) => {
     try {
-      console.log("Attempting form submission with data:", data);
-
-      // Use FormSubmit's endpoint with your email - using the ajax format
-      const response = await fetch('https://formsubmit.co/ajax/hallo@nksmd.de', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: data.name,
-          company: data.company,
-          email: data.email,
-          phone: data.phone,
-          message: data.message,
-          _subject: `Neue Kontaktanfrage von ${data.name}`,
-          _cc: "nikoschmid@gmx.de" // Send a copy to this email
-        })
-      });
+      console.log("Submitting form with data:", data);
       
-      console.log("Form submission response:", response);
-      
-      const responseData = await response.json();
-      console.log("Response data:", responseData);
-      
-      if (response.ok) {
-        console.log("Form submission successful");
+      // Fill the hidden form with data
+      const hiddenForm = hiddenFormRef.current;
+      if (hiddenForm) {
+        const formData = new FormData(hiddenForm);
+        formData.set('name', data.name);
+        formData.set('company', data.company);
+        formData.set('email', data.email);
+        formData.set('phone', data.phone || '');
+        formData.set('message', data.message);
+        formData.set('_subject', `Neue Kontaktanfrage von ${data.name}`);
+        
+        // Submit the hidden form programmatically
+        hiddenForm.submit();
+        
+        // Show success message
         toast({
           title: "Anfrage gesendet",
           description: "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden."
         });
-        reset(); // Reset form after successful submission
-      } else {
-        console.error('Form submission response not ok:', response, responseData);
-        throw new Error(`Formular konnte nicht gesendet werden: ${responseData?.message || ''}`);
+        
+        // Reset the React form
+        reset();
       }
     } catch (error) {
       console.error('Form submission error:', error);
@@ -82,6 +72,24 @@ const ContactSection = () => {
             </p>
           </div>
           
+          {/* Hidden HTML form for actual submission */}
+          <form 
+            ref={hiddenFormRef}
+            action="https://formsubmit.co/hallo@nksmd.de" 
+            method="POST"
+            style={{ display: 'none' }}
+          >
+            <input type="hidden" name="_cc" value="nikoschmid@gmx.de" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value={`${window.location.origin}/#contact`} />
+            <input type="text" name="name" />
+            <input type="text" name="company" />
+            <input type="email" name="email" />
+            <input type="text" name="phone" />
+            <textarea name="message"></textarea>
+            <input type="hidden" name="_subject" />
+          </form>
+          
           <div className="bg-white rounded-lg shadow-lg p-8">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -94,6 +102,7 @@ const ContactSection = () => {
                     placeholder="Ihr Name" 
                     {...register("name", { required: "Name ist erforderlich" })} 
                   />
+                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
                 </div>
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-architect-dark mb-1">
@@ -104,6 +113,7 @@ const ContactSection = () => {
                     placeholder="Ihr Unternehmen" 
                     {...register("company", { required: "Unternehmen ist erforderlich" })} 
                   />
+                  {errors.company && <p className="text-red-500 text-sm mt-1">{errors.company.message}</p>}
                 </div>
               </div>
               
@@ -124,6 +134,7 @@ const ContactSection = () => {
                       }
                     })} 
                   />
+                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-architect-dark mb-1">
@@ -147,6 +158,7 @@ const ContactSection = () => {
                   rows={5} 
                   {...register("message", { required: "Nachricht ist erforderlich" })} 
                 />
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>}
               </div>
               
               <div className="flex justify-center">
