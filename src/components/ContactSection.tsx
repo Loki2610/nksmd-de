@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,37 +26,32 @@ const ContactSection = () => {
     try {
       console.log("Form submission started with data:", data);
 
-      // FormSubmit.co requires specific configuration for proper functioning
-      const formData = {
-        name: data.name,
-        company: data.company,
-        email: data.email,
-        phone: data.phone,
-        message: data.message,
-        _subject: `Neue Kontaktanfrage von ${data.name} - ${data.company}`,
-        _captcha: "false",
-        _template: "table",
-        _next: window.location.origin + "?submitted=true"
-      };
+      // Create FormData object for FormSubmit.co
+      const formData = new FormData();
+      formData.append('name', data.name);
+      formData.append('company', data.company);
+      formData.append('email', data.email);
+      formData.append('phone', data.phone || '');
+      formData.append('message', data.message);
+      formData.append('_subject', `Neue Kontaktanfrage von ${data.name} - ${data.company}`);
+      formData.append('_captcha', 'false');
+      formData.append('_template', 'table');
+      formData.append('_next', window.location.origin + '?submitted=true');
 
-      console.log("Sending form data to FormSubmit.co:", formData);
+      console.log("Sending FormData to FormSubmit.co:");
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
 
-      const response = await fetch('https://formsubmit.co/ajax/hallo@nksmd.de', {
+      const response = await fetch('https://formsubmit.co/hallo@nksmd.de', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        body: formData
       });
       
       console.log("FormSubmit.co response status:", response.status);
-      console.log("FormSubmit.co response headers:", response.headers);
+      console.log("FormSubmit.co response URL:", response.url);
       
-      const responseData = await response.json();
-      console.log("FormSubmit.co response data:", responseData);
-      
-      if (response.ok && responseData.success !== false) {
+      if (response.ok) {
         console.log("Form submission successful");
         toast({
           title: "Anfrage erfolgreich gesendet",
@@ -65,8 +59,8 @@ const ContactSection = () => {
         });
         reset();
       } else {
-        console.error('FormSubmit.co returned error:', responseData);
-        throw new Error(`Formular konnte nicht gesendet werden: ${responseData?.message || 'Unbekannter Fehler'}`);
+        console.error('FormSubmit.co returned error status:', response.status);
+        throw new Error(`Formular konnte nicht gesendet werden (Status: ${response.status})`);
       }
     } catch (error) {
       console.error('Form submission error details:', error);
