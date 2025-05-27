@@ -28,7 +28,7 @@ const ContactSection = () => {
       console.log("Attempting form submission with data:", data);
 
       // Use FormSubmit's endpoint with your email - using the ajax format
-      const response = await fetch('https://formsubmit.co/ajax/info@nksmd.de', {
+      const response = await fetch('https://formsubmit.co/ajax/hallo@nksmd.de', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -169,10 +169,10 @@ const ContactSection = () => {
               <p className="text-architect-muted mb-2 text-lg">
                 Direkte E-Mail: <br />
                 <a 
-                  href="mailto:info@nksmd.de?subject=Kontaktanfrage%20über%20Website&body=Hallo,%0D%0A%0D%0AIch%20interessiere%20mich%20für%20Ihre%20Dienstleistungen.%0D%0A%0D%0AVielen%20Dank!" 
+                  href="mailto:hallo@nksmd.de?subject=Kontaktanfrage%20über%20Website&body=Hallo,%0D%0A%0D%0AIch%20interessiere%20mich%20für%20Ihre%20Dienstleistungen.%0D%0A%0D%0AVielen%20Dank!" 
                   className="text-architect-accent font-medium hover:underline text-xl"
                 >
-                  info@nksmd.de
+                  hallo@nksmd.de
                 </a>
               </p>
               <p className="text-architect-muted text-lg">
