@@ -29,13 +29,13 @@ const ContactSection = () => {
       
       const hiddenForm = hiddenFormRef.current;
       if (hiddenForm) {
-        // Sichere Variante mit Null-Checks
+        // Sichere Variante mit Null-Checks für Web3Forms
         const nameInput = hiddenForm.querySelector('input[name="name"]') as HTMLInputElement;
         const companyInput = hiddenForm.querySelector('input[name="company"]') as HTMLInputElement;
         const emailInput = hiddenForm.querySelector('input[name="email"]') as HTMLInputElement;
         const phoneInput = hiddenForm.querySelector('input[name="phone"]') as HTMLInputElement;
         const messageTextarea = hiddenForm.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
-        const subjectInput = hiddenForm.querySelector('input[name="_subject"]') as HTMLInputElement;
+        const subjectInput = hiddenForm.querySelector('input[name="subject"]') as HTMLInputElement;
         
         console.log("Setting form values...");
         if (nameInput) {
@@ -55,11 +55,11 @@ const ContactSection = () => {
           console.log("Phone set:", data.phone || '');
         }
         if (messageTextarea) {
-          messageTextarea.value = data.message;
-          console.log("Message set:", data.message);
+          messageTextarea.value = `Unternehmen: ${data.company}\nTelefon: ${data.phone || 'Nicht angegeben'}\n\nNachricht:\n${data.message}`;
+          console.log("Message set with company and phone info");
         }
         if (subjectInput) {
-          subjectInput.value = `Neue Kontaktanfrage von ${data.name}`;
+          subjectInput.value = `Neue Kontaktanfrage von ${data.name} (${data.company})`;
           console.log("Subject set");
         }
         
@@ -71,7 +71,7 @@ const ContactSection = () => {
         
         // Kurze Verzögerung damit der Toast sichtbar wird
         setTimeout(() => {
-          console.log("Submitting hidden form...");
+          console.log("Submitting hidden form to Web3Forms...");
           hiddenForm.submit();
           
           // Reset the React form after submission
@@ -99,22 +99,21 @@ const ContactSection = () => {
             </p>
           </div>
           
-          {/* Hidden HTML form for actual submission */}
+          {/* Hidden Web3Forms form for actual submission */}
           <form 
             ref={hiddenFormRef}
-            action="https://formsubmit.co/hallo@nksmd.de" 
+            action="https://api.web3forms.com/submit" 
             method="POST"
             style={{ display: 'none' }}
           >
-            <input type="hidden" name="_cc" value="nikoschmid@gmx.de" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value={`${window.location.origin}/#contact`} />
+            <input type="hidden" name="access_key" value="b3d88183-82a0-41c2-912d-f67229068333" />
+            <input type="hidden" name="redirect" value={`${window.location.origin}/#contact`} />
+            <input type="hidden" name="subject" />
             <input type="text" name="name" />
             <input type="text" name="company" />
             <input type="email" name="email" />
             <input type="text" name="phone" />
             <textarea name="message"></textarea>
-            <input type="hidden" name="_subject" />
           </form>
           
           <div className="bg-white rounded-lg shadow-lg p-8">
