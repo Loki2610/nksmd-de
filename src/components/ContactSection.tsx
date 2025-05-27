@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,34 +27,62 @@ const ContactSection = () => {
     try {
       console.log("Submitting form with data:", data);
       
-      // Fill the hidden form with data
       const hiddenForm = hiddenFormRef.current;
       if (hiddenForm) {
-        const formData = new FormData(hiddenForm);
-        formData.set('name', data.name);
-        formData.set('company', data.company);
-        formData.set('email', data.email);
-        formData.set('phone', data.phone || '');
-        formData.set('message', data.message);
-        formData.set('_subject', `Neue Kontaktanfrage von ${data.name}`);
+        // Sichere Variante mit Null-Checks
+        const nameInput = hiddenForm.querySelector('input[name="name"]') as HTMLInputElement;
+        const companyInput = hiddenForm.querySelector('input[name="company"]') as HTMLInputElement;
+        const emailInput = hiddenForm.querySelector('input[name="email"]') as HTMLInputElement;
+        const phoneInput = hiddenForm.querySelector('input[name="phone"]') as HTMLInputElement;
+        const messageTextarea = hiddenForm.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
+        const subjectInput = hiddenForm.querySelector('input[name="_subject"]') as HTMLInputElement;
         
-        // Submit the hidden form programmatically
-        hiddenForm.submit();
+        console.log("Setting form values...");
+        if (nameInput) {
+          nameInput.value = data.name;
+          console.log("Name set:", data.name);
+        }
+        if (companyInput) {
+          companyInput.value = data.company;
+          console.log("Company set:", data.company);
+        }
+        if (emailInput) {
+          emailInput.value = data.email;
+          console.log("Email set:", data.email);
+        }
+        if (phoneInput) {
+          phoneInput.value = data.phone || '';
+          console.log("Phone set:", data.phone || '');
+        }
+        if (messageTextarea) {
+          messageTextarea.value = data.message;
+          console.log("Message set:", data.message);
+        }
+        if (subjectInput) {
+          subjectInput.value = `Neue Kontaktanfrage von ${data.name}`;
+          console.log("Subject set");
+        }
         
-        // Show success message
+        // Toast-Nachricht vor dem Submit
         toast({
-          title: "Anfrage gesendet",
-          description: "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden."
+          title: "Anfrage wird gesendet",
+          description: "Sie werden weitergeleitet..."
         });
         
-        // Reset the React form
-        reset();
+        // Kurze Verzögerung damit der Toast sichtbar wird
+        setTimeout(() => {
+          console.log("Submitting hidden form...");
+          hiddenForm.submit();
+          
+          // Reset the React form after submission
+          reset();
+        }, 500);
       }
     } catch (error) {
       console.error('Form submission error:', error);
       toast({
         title: "Fehler",
-        description: "Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es später noch einmal.",
+        description: "Es gab ein Problem beim Senden Ihrer Anfrage.",
         variant: "destructive"
       });
     }
