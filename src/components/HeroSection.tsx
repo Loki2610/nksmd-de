@@ -39,13 +39,16 @@ const HeroSection = () => {
                 playsInline
                 poster="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png"
                 aria-label="Architekt bei der Arbeit"
+                data-lovable="video"
+                data-lovable-type="video"
               >
-                <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
+                <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
                 {/* Fallback für Browser ohne Video-Support */}
                 <img 
                   src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
                   alt="Portrait des Architekten" 
-                  className="object-cover h-full w-full" 
+                  className="object-cover h-full w-full"
+                  data-lovable="fallback-image"
                 />
               </video>
             </div>
