@@ -1,8 +1,11 @@
 
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Maximize2 } from 'lucide-react';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 const HeroSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleVideoError = (error: React.SyntheticEvent<HTMLVideoElement>) => {
     console.error('Video loading error:', error);
     console.log('Video source path:', '/lovable-uploads/architect-video.mp4');
@@ -14,6 +17,10 @@ const HeroSection = () => {
 
   const handleVideoLoadStart = () => {
     console.log('Video loading started');
+  };
+
+  const handleVideoClick = () => {
+    setIsModalOpen(true);
   };
 
   return (
@@ -43,34 +50,76 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-            <div className="relative h-80 w-80 lg:h-96 lg:w-96 rounded-lg overflow-hidden shadow-xl">
-              <video
-                className="object-cover h-full w-full"
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png"
-                aria-label="Architekt bei der Arbeit"
-                data-lovable="video"
-                data-lovable-type="video"
-                onError={handleVideoError}
-                onLoadedData={handleVideoLoad}
-                onLoadStart={handleVideoLoadStart}
-              >
-                <source 
-                  src="/lovable-uploads/architect-video.mp4" 
-                  type="video/mp4" 
-                  data-lovable="video-source"
-                />
-                {/* Fallback für Browser ohne Video-Support */}
-                <img 
-                  src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
-                  alt="Portrait des Architekten" 
-                  className="object-cover h-full w-full"
-                  data-lovable="fallback-image"
-                />
-              </video>
+            <div className="relative w-full max-w-md lg:max-w-lg">
+              {/* Video Container with 16:9 Aspect Ratio */}
+              <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl group cursor-pointer">
+                <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                  <DialogTrigger asChild>
+                    <div className="relative h-full w-full" onClick={handleVideoClick}>
+                      <video
+                        className="object-cover h-full w-full"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        poster="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png"
+                        aria-label="Architekt bei der Arbeit"
+                        data-lovable="video"
+                        data-lovable-type="video"
+                        onError={handleVideoError}
+                        onLoadedData={handleVideoLoad}
+                        onLoadStart={handleVideoLoadStart}
+                      >
+                        <source 
+                          src="/lovable-uploads/architect-video.mp4" 
+                          type="video/mp4" 
+                          data-lovable="video-source"
+                        />
+                        {/* Fallback für Browser ohne Video-Support */}
+                        <img 
+                          src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
+                          alt="Portrait des Architekten" 
+                          className="object-cover h-full w-full"
+                          data-lovable="fallback-image"
+                        />
+                      </video>
+                      
+                      {/* Hover Overlay with Expand Icon */}
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="bg-white bg-opacity-90 rounded-full p-3">
+                            <Maximize2 className="h-6 w-6 text-architect-dark" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </DialogTrigger>
+                  
+                  <DialogContent className="max-w-4xl w-full p-0 bg-black border-none">
+                    <div className="relative aspect-video w-full">
+                      <video
+                        className="w-full h-full object-contain"
+                        controls
+                        autoPlay
+                        loop
+                        poster="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png"
+                        aria-label="Architekt bei der Arbeit - Vergrößerte Ansicht"
+                      >
+                        <source 
+                          src="/lovable-uploads/architect-video.mp4" 
+                          type="video/mp4"
+                        />
+                        {/* Fallback für Browser ohne Video-Support */}
+                        <img 
+                          src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
+                          alt="Portrait des Architekten" 
+                          className="object-contain w-full h-full"
+                        />
+                      </video>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
             </div>
           </div>
         </div>
