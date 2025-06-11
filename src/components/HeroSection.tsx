@@ -3,6 +3,19 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
+  const handleVideoError = (error: React.SyntheticEvent<HTMLVideoElement>) => {
+    console.error('Video loading error:', error);
+    console.log('Video source path:', '/lovable-uploads/architect-video.mp4');
+  };
+
+  const handleVideoLoad = () => {
+    console.log('Video loaded successfully');
+  };
+
+  const handleVideoLoadStart = () => {
+    console.log('Video loading started');
+  };
+
   return (
     <section id="hero" className="bg-gradient-to-b from-gray-50 to-white py-12 lg:py-20">
       <div className="section-container">
@@ -41,8 +54,15 @@ const HeroSection = () => {
                 aria-label="Architekt bei der Arbeit"
                 data-lovable="video"
                 data-lovable-type="video"
+                onError={handleVideoError}
+                onLoadedData={handleVideoLoad}
+                onLoadStart={handleVideoLoadStart}
               >
-                <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
+                <source 
+                  src="/lovable-uploads/architect-video.mp4" 
+                  type="video/mp4" 
+                  data-lovable="video-source"
+                />
                 {/* Fallback für Browser ohne Video-Support */}
                 <img 
                   src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
