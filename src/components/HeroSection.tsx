@@ -84,7 +84,7 @@ const HeroSection = () => {
                   <DialogContent className="max-w-5xl w-full bg-black border-none p-0 [&>button]:hidden">
                     <div className="relative">
                       {/* Custom Close Button */}
-                      <button onClick={() => setIsModalOpen(false)} aria-label="Video schließen" className="absolute -top-0 right-0 z-10 bg-opacity-80 hover:bg-opacity-100 p-2 transition-all duration-200 text-white bg-transparent rounded-full border-0 outline-none focus:outline-none focus:ring-0">
+                      <button onClick={() => setIsModalOpen(false)} aria-label="Video schließen" className="absolute -top-10 right-0 z-10 bg-opacity-80 hover:bg-opacity-100 p-2 transition-all duration-200 text-white bg-transparent rounded-full border-0 outline-none focus:outline-none focus:ring-0">
                         <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
