@@ -26,7 +26,7 @@ const HeroSection = () => {
   return (
     <section id="hero" className="bg-gradient-to-b from-gray-50 to-white py-12 lg:py-20">
       <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="order-2 lg:order-1">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl sm:text-5xl font-bold text-architect-dark leading-tight">
@@ -51,8 +51,8 @@ const HeroSection = () => {
           </div>
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md lg:max-w-lg">
-              {/* Video Container with 16:9 Aspect Ratio */}
-              <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl group cursor-pointer">
+              {/* Video Container with 4:3 Aspect Ratio */}
+              <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl group cursor-pointer">
                 <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                   <DialogTrigger asChild>
                     <div className="relative h-full w-full" onClick={handleVideoClick}>
@@ -96,7 +96,7 @@ const HeroSection = () => {
                   </DialogTrigger>
                   
                   <DialogContent className="max-w-4xl w-full p-0 bg-black border-none">
-                    <div className="relative aspect-video w-full">
+                    <div className="relative aspect-[4/3] w-full">
                       <video
                         className="w-full h-full object-contain"
                         controls
