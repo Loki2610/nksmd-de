@@ -1,7 +1,10 @@
+
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+
 const HeroSection = () => {
-  return <section id="hero" className="bg-gradient-to-b from-gray-50 to-white py-12 lg:py-20">
+  return (
+    <section id="hero" className="bg-gradient-to-b from-gray-50 to-white py-12 lg:py-20">
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1">
@@ -9,7 +12,9 @@ const HeroSection = () => {
               <h1 className="text-4xl sm:text-5xl font-bold text-architect-dark leading-tight">
                 Architektonische Expertise für Ihr Bauunternehmen
               </h1>
-              <p className="mt-6 text-lg text-architect-muted max-w-2xl mx-auto lg:mx-0">Spezialisiert auf Planung und Genehmigungsmanagement für Bauunternehmen, Fertighaushersteller und Generalunternehmer. Mit über 10 Jahren Erfahrung und erfolgreichen Projekten in Deutschland und Österreich.</p>
+              <p className="mt-6 text-lg text-architect-muted max-w-2xl mx-auto lg:mx-0">
+                Spezialisiert auf Planung und Genehmigungsmanagement für Bauunternehmen, Fertighaushersteller und Generalunternehmer. Mit über 10 Jahren Erfahrung und erfolgreichen Projekten in Deutschland und Österreich.
+              </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a href="#contact" className="cta-button group">
                   Projekt besprechen
@@ -26,11 +31,29 @@ const HeroSection = () => {
           </div>
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="relative h-80 w-80 lg:h-96 lg:w-96 rounded-lg overflow-hidden shadow-xl">
-              <img src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" alt="Portrait des Architekten" className="object-cover h-full w-full" />
+              <video
+                className="object-cover h-full w-full"
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png"
+                aria-label="Architekt bei der Arbeit"
+              >
+                <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
+                {/* Fallback für Browser ohne Video-Support */}
+                <img 
+                  src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
+                  alt="Portrait des Architekten" 
+                  className="object-cover h-full w-full" 
+                />
+              </video>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
