@@ -62,7 +62,7 @@ const HeroSection = () => {
                         loop
                         muted
                         playsInline
-                        poster="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png"
+                        poster="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png"
                         aria-label="Architekt bei der Arbeit"
                         data-lovable="video"
                         data-lovable-type="video"
@@ -77,8 +77,8 @@ const HeroSection = () => {
                         />
                         {/* Fallback für Browser ohne Video-Support */}
                         <img 
-                          src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
-                          alt="Portrait des Architekten" 
+                          src="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png" 
+                          alt="Modernes Architekturprojekt" 
                           className="object-cover h-full w-full"
                           data-lovable="fallback-image"
                         />
@@ -102,7 +102,7 @@ const HeroSection = () => {
                         controls
                         autoPlay
                         loop
-                        poster="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png"
+                        poster="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png"
                         aria-label="Architekt bei der Arbeit - Vergrößerte Ansicht"
                       >
                         <source 
@@ -111,8 +111,8 @@ const HeroSection = () => {
                         />
                         {/* Fallback für Browser ohne Video-Support */}
                         <img 
-                          src="/lovable-uploads/b48c43c7-719a-4304-8835-9d9da7bff6b1.png" 
-                          alt="Portrait des Architekten" 
+                          src="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png" 
+                          alt="Modernes Architekturprojekt" 
                           className="object-contain w-full h-full"
                         />
                       </video>
