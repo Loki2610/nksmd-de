@@ -20,7 +20,7 @@ const HeroSection = () => {
                 </a>
               </div>
               <div className="mt-8 text-architect-muted text-sm">
-                <p>Mitglied der Bayerischen Architektenkammer</p>
+                <p className="font-semibold">Mitglied der Bayerischen Architektenkammer</p>
               </div>
             </div>
           </div>
