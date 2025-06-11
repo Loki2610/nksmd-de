@@ -1,10 +1,28 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Maximize2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Automatisches Abspielen des Videos nach dem Laden
+    const playVideo = async () => {
+      if (videoRef.current) {
+        try {
+          await videoRef.current.play();
+          console.log('Video started automatically');
+        } catch (error) {
+          console.log('Autoplay was prevented by browser:', error);
+        }
+      }
+    };
+
+    const timer = setTimeout(playVideo, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleVideoError = (error: React.SyntheticEvent<HTMLVideoElement>) => {
     console.error('Video loading error:', error);
@@ -57,8 +75,8 @@ const HeroSection = () => {
                   <DialogTrigger asChild>
                     <div className="relative h-full w-full" onClick={handleVideoClick}>
                       <video
+                        ref={videoRef}
                         className="object-cover h-full w-full"
-                        autoPlay
                         loop
                         muted
                         playsInline
@@ -95,27 +113,41 @@ const HeroSection = () => {
                     </div>
                   </DialogTrigger>
                   
-                  <DialogContent className="max-w-5xl w-full p-0 bg-black border-none">
-                    <div className="relative aspect-video w-full">
-                      <video
-                        className="w-full h-full object-contain"
-                        controls
-                        autoPlay
-                        loop
-                        preload="auto"
-                        aria-label="Architekt bei der Arbeit - Vergrößerte Ansicht"
+                  <DialogContent className="max-w-5xl w-full bg-black border-none p-0 [&>button]:hidden">
+                    <div className="relative">
+                      {/* Custom Close Button */}
+                      <button
+                        onClick={() => setIsModalOpen(false)}
+                        className="absolute -top-12 right-0 z-10 bg-white bg-opacity-80 hover:bg-opacity-100 text-black rounded-full p-2 transition-all duration-200"
+                        aria-label="Video schließen"
                       >
-                        <source 
-                          src="/lovable-uploads/architect-video.mp4" 
-                          type="video/mp4"
-                        />
-                        {/* Fallback für Browser ohne Video-Support */}
-                        <img 
-                          src="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png" 
-                          alt="Modernes Architekturprojekt" 
-                          className="object-contain w-full h-full"
-                        />
-                      </video>
+                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                      
+                      {/* Video Container */}
+                      <div className="relative aspect-video w-full">
+                        <video
+                          className="w-full h-full object-contain"
+                          controls
+                          autoPlay
+                          loop
+                          preload="auto"
+                          aria-label="Architekt bei der Arbeit - Vergrößerte Ansicht"
+                        >
+                          <source 
+                            src="/lovable-uploads/architect-video.mp4" 
+                            type="video/mp4"
+                          />
+                          {/* Fallback für Browser ohne Video-Support */}
+                          <img 
+                            src="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png" 
+                            alt="Modernes Architekturprojekt" 
+                            className="object-contain w-full h-full"
+                          />
+                        </video>
+                      </div>
                     </div>
                   </DialogContent>
                 </Dialog>
