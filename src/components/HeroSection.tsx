@@ -62,7 +62,7 @@ const HeroSection = () => {
                         loop
                         muted
                         playsInline
-                        poster="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png"
+                        preload="auto"
                         aria-label="Architekt bei der Arbeit"
                         data-lovable="video"
                         data-lovable-type="video"
@@ -95,14 +95,14 @@ const HeroSection = () => {
                     </div>
                   </DialogTrigger>
                   
-                  <DialogContent className="max-w-4xl w-full p-0 bg-black border-none">
-                    <div className="relative aspect-[4/3] w-full">
+                  <DialogContent className="max-w-5xl w-full p-0 bg-black border-none">
+                    <div className="relative aspect-video w-full">
                       <video
                         className="w-full h-full object-contain"
                         controls
                         autoPlay
                         loop
-                        poster="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png"
+                        preload="auto"
                         aria-label="Architekt bei der Arbeit - Vergrößerte Ansicht"
                       >
                         <source 
