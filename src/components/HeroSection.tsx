@@ -1,38 +1,113 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Maximize2 } from 'lucide-react';
+import { ArrowRight, Maximize2, Play } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Safari detection
+  const isSafari = () => {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  };
+
   useEffect(() => {
-    // Automatisches Abspielen des Videos nach dem Laden
     const playVideo = async () => {
       if (videoRef.current) {
         try {
+          setIsVideoLoading(true);
+          
+          // Wait for video to be ready
+          if (videoRef.current.readyState < 3) {
+            await new Promise((resolve) => {
+              const onCanPlay = () => {
+                videoRef.current?.removeEventListener('canplaythrough', onCanPlay);
+                resolve(void 0);
+              };
+              videoRef.current?.addEventListener('canplaythrough', onCanPlay);
+            });
+          }
+
           await videoRef.current.play();
           console.log('Video started automatically');
+          setShowPlayButton(false);
+          setIsVideoLoading(false);
         } catch (error) {
           console.log('Autoplay was prevented by browser:', error);
+          setShowPlayButton(true);
+          setIsVideoLoading(false);
         }
       }
     };
-    const timer = setTimeout(playVideo, 100);
-    return () => clearTimeout(timer);
+
+    // Use Intersection Observer for better autoplay timing
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const timer = setTimeout(() => {
+              playVideo();
+            }, isSafari() ? 500 : 100); // Longer delay for Safari
+            
+            return () => clearTimeout(timer);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
+
   const handleVideoError = (error: React.SyntheticEvent<HTMLVideoElement>) => {
     console.error('Video loading error:', error);
     console.log('Video source path:', '/lovable-uploads/architect-video.mp4');
+    setShowPlayButton(true);
+    setIsVideoLoading(false);
   };
+
   const handleVideoLoad = () => {
     console.log('Video loaded successfully');
   };
+
   const handleVideoLoadStart = () => {
     console.log('Video loading started');
+    setIsVideoLoading(true);
   };
+
+  const handleCanPlayThrough = () => {
+    console.log('Video can play through');
+    setIsVideoLoading(false);
+  };
+
   const handleVideoClick = () => {
     setIsModalOpen(true);
   };
-  return <section id="hero" className="bg-gradient-to-b from-gray-50 to-white py-12 lg:py-20">
+
+  const handlePlayButtonClick = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      try {
+        await videoRef.current.play();
+        setShowPlayButton(false);
+        console.log('Video started manually');
+      } catch (error) {
+        console.error('Manual play failed:', error);
+      }
+    }
+  };
+
+  return (
+    <section id="hero" className="bg-gradient-to-b from-gray-50 to-white py-12 lg:py-20">
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="order-2 lg:order-1">
@@ -57,6 +132,7 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
+          
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md lg:max-w-lg">
               {/* Video Container with 4:3 Aspect Ratio */}
@@ -64,27 +140,71 @@ const HeroSection = () => {
                 <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                   <DialogTrigger asChild>
                     <div className="relative h-full w-full" onClick={handleVideoClick}>
-                      <video ref={videoRef} className="object-cover h-full w-full" loop muted playsInline preload="auto" aria-label="Architekt bei der Arbeit" data-lovable="video" data-lovable-type="video" onError={handleVideoError} onLoadedData={handleVideoLoad} onLoadStart={handleVideoLoadStart}>
+                      <video 
+                        ref={videoRef} 
+                        className="object-cover h-full w-full" 
+                        loop 
+                        muted 
+                        playsInline
+                        webkit-playsinline="true"
+                        x-webkit-airplay="allow"
+                        preload="auto" 
+                        aria-label="Architekt bei der Arbeit" 
+                        data-lovable="video" 
+                        data-lovable-type="video" 
+                        onError={handleVideoError} 
+                        onLoadedData={handleVideoLoad} 
+                        onLoadStart={handleVideoLoadStart}
+                        onCanPlayThrough={handleCanPlayThrough}
+                      >
                         <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
                         {/* Fallback für Browser ohne Video-Support */}
                         <img src="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
                       
-                      {/* Hover Overlay with Expand Icon */}
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {/* Loading Indicator */}
+                      {isVideoLoading && (
+                        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
                           <div className="bg-white bg-opacity-90 rounded-full p-3">
-                            <Maximize2 className="h-6 w-6 text-architect-dark" />
+                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-architect-dark"></div>
                           </div>
                         </div>
-                      </div>
+                      )}
+                      
+                      {/* Manual Play Button for Safari fallback */}
+                      {showPlayButton && !isVideoLoading && (
+                        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                          <button 
+                            onClick={handlePlayButtonClick}
+                            className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 transition-all duration-200"
+                            aria-label="Video abspielen"
+                          >
+                            <Play className="h-8 w-8 text-architect-dark ml-1" />
+                          </button>
+                        </div>
+                      )}
+                      
+                      {/* Hover Overlay with Expand Icon */}
+                      {!showPlayButton && !isVideoLoading && (
+                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="bg-white bg-opacity-90 rounded-full p-3">
+                              <Maximize2 className="h-6 w-6 text-architect-dark" />
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </DialogTrigger>
                   
                   <DialogContent className="max-w-5xl w-full bg-black border-none p-0 [&>button]:hidden">
                     <div className="relative">
-                      {/* Custom Close Button */}
-                      <button onClick={() => setIsModalOpen(false)} aria-label="Video schließen" className="absolute -top-10 right-0 z-10 bg-opacity-80 hover:bg-opacity-100 p-2 transition-all duration-200 text-white bg-transparent rounded-full border-0 outline-none focus:outline-none focus:ring-0">
+                      {/* Custom Close Button - positioned outside video area */}
+                      <button 
+                        onClick={() => setIsModalOpen(false)} 
+                        aria-label="Video schließen" 
+                        className="absolute -top-12 right-0 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 p-2 transition-all duration-200 text-white rounded-full border-0 outline-none focus:outline-none focus:ring-2 focus:ring-white"
+                      >
                         <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -92,7 +212,15 @@ const HeroSection = () => {
                       
                       {/* Video Container */}
                       <div className="relative aspect-video w-full">
-                        <video className="w-full h-full object-contain" controls autoPlay loop preload="auto" aria-label="Architekt bei der Arbeit - Vergrößerte Ansicht">
+                        <video 
+                          className="w-full h-full object-contain" 
+                          controls 
+                          autoPlay 
+                          loop 
+                          preload="auto" 
+                          aria-label="Architekt bei der Arbeit - Vergrößerte Ansicht"
+                          controlsList="nodownload"
+                        >
                           <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
                           {/* Fallback für Browser ohne Video-Support */}
                           <img src="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
@@ -106,6 +234,8 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
