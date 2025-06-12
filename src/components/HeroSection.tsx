@@ -168,7 +168,7 @@ const HeroSection = () => {
                         webkit-playsinline="true"
                         x-webkit-airplay="allow"
                         preload={isMobile() || isIOS() ? "metadata" : "auto"}
-                        poster="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png"
+                        poster="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png"
                         aria-label="Architekt bei der Arbeit" 
                         data-lovable="video" 
                         data-lovable-type="video" 
@@ -179,7 +179,7 @@ const HeroSection = () => {
                       >
                         <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
                         {/* Fallback für Browser ohne Video-Support */}
-                        <img src="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
+                        <img src="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
                       
                       {/* Loading Indicator - nur für Desktop */}
@@ -243,7 +243,7 @@ const HeroSection = () => {
                         >
                           <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
                           {/* Fallback für Browser ohne Video-Support */}
-                          <img src="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
+                          <img src="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
                         </video>
                       </div>
                     </div>
