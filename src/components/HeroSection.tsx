@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Maximize2, Play } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
@@ -8,12 +9,29 @@ const HeroSection = () => {
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // iOS and mobile detection
+  const isIOS = () => {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent);
+  };
+
+  const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
+
   // Safari detection
   const isSafari = () => {
     return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   };
 
   useEffect(() => {
+    // For iOS/mobile devices, show play button immediately
+    if (isIOS() || isMobile()) {
+      console.log('Mobile/iOS device detected - showing play button');
+      setShowPlayButton(true);
+      setIsVideoLoading(false);
+      return;
+    }
+
     const playVideo = async () => {
       if (videoRef.current) {
         try {
@@ -42,14 +60,14 @@ const HeroSection = () => {
       }
     };
 
-    // Use Intersection Observer for better autoplay timing
+    // Use Intersection Observer for better autoplay timing (desktop only)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const timer = setTimeout(() => {
               playVideo();
-            }, isSafari() ? 500 : 100); // Longer delay for Safari
+            }, isSafari() ? 500 : 100);
             
             return () => clearTimeout(timer);
           }
@@ -85,7 +103,9 @@ const HeroSection = () => {
 
   const handleCanPlayThrough = () => {
     console.log('Video can play through');
-    setIsVideoLoading(false);
+    if (!isMobile() && !isIOS()) {
+      setIsVideoLoading(false);
+    }
   };
 
   const handleVideoClick = () => {
@@ -147,7 +167,8 @@ const HeroSection = () => {
                         playsInline
                         webkit-playsinline="true"
                         x-webkit-airplay="allow"
-                        preload="auto" 
+                        preload={isMobile() || isIOS() ? "metadata" : "auto"}
+                        poster="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png"
                         aria-label="Architekt bei der Arbeit" 
                         data-lovable="video" 
                         data-lovable-type="video" 
@@ -161,8 +182,8 @@ const HeroSection = () => {
                         <img src="/lovable-uploads/8db3a93f-7427-4a3f-a58d-02b14c306f3e.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
                       
-                      {/* Loading Indicator */}
-                      {isVideoLoading && (
+                      {/* Loading Indicator - nur für Desktop */}
+                      {isVideoLoading && !isMobile() && !isIOS() && (
                         <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
                           <div className="bg-white bg-opacity-90 rounded-full p-3">
                             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-architect-dark"></div>
@@ -170,21 +191,21 @@ const HeroSection = () => {
                         </div>
                       )}
                       
-                      {/* Manual Play Button for Safari fallback */}
-                      {showPlayButton && !isVideoLoading && (
+                      {/* Play Button - für mobile Geräte und Fallback */}
+                      {showPlayButton && (
                         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                           <button 
                             onClick={handlePlayButtonClick}
-                            className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 transition-all duration-200"
+                            className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 md:p-6 transition-all duration-200 touch-manipulation"
                             aria-label="Video abspielen"
                           >
-                            <Play className="h-8 w-8 text-architect-dark ml-1" />
+                            <Play className="h-8 w-8 md:h-10 md:w-10 text-architect-dark ml-1" />
                           </button>
                         </div>
                       )}
                       
-                      {/* Hover Overlay with Expand Icon */}
-                      {!showPlayButton && !isVideoLoading && (
+                      {/* Hover Overlay with Expand Icon - nur für Desktop */}
+                      {!showPlayButton && !isVideoLoading && !isMobile() && !isIOS() && (
                         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="bg-white bg-opacity-90 rounded-full p-3">
