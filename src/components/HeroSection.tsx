@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Maximize2, Play } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
@@ -168,7 +167,7 @@ const HeroSection = () => {
                         webkit-playsinline="true"
                         x-webkit-airplay="allow"
                         preload={isMobile() || isIOS() ? "metadata" : "auto"}
-                        poster="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png"
+                        poster="/lovable-uploads/D1_Groß.png"
                         aria-label="Architekt bei der Arbeit" 
                         data-lovable="video" 
                         data-lovable-type="video" 
@@ -179,7 +178,7 @@ const HeroSection = () => {
                       >
                         <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
                         {/* Fallback für Browser ohne Video-Support */}
-                        <img src="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
+                        <img src="/lovable-uploads/D1_Groß.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
                       
                       {/* Loading Indicator - nur für Desktop */}
@@ -243,7 +242,7 @@ const HeroSection = () => {
                         >
                           <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
                           {/* Fallback für Browser ohne Video-Support */}
-                          <img src="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
+                          <img src="/lovable-uploads/D1_Groß.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
                         </video>
                       </div>
                     </div>
