@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Maximize2, Play } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
@@ -135,8 +134,8 @@ const HeroSection = () => {
           
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md lg:max-w-lg">
-              {/* Video Container with 4:3 Aspect Ratio */}
-              <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-xl group cursor-pointer">
+              {/* Video Container with 16:9 Aspect Ratio */}
+              <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl group cursor-pointer">
                 <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                   <DialogTrigger asChild>
                     <div className="relative h-full w-full" onClick={handleVideoClick}>
