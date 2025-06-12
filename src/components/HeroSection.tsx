@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Maximize2, Play } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
@@ -6,6 +7,7 @@ const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(false);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
+  const [showPoster, setShowPoster] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // iOS and mobile detection
@@ -25,9 +27,10 @@ const HeroSection = () => {
   useEffect(() => {
     // For iOS/mobile devices, show play button immediately
     if (isIOS() || isMobile()) {
-      console.log('Mobile/iOS device detected - showing play button');
+      console.log('Mobile/iOS device detected - showing play button and poster');
       setShowPlayButton(true);
       setIsVideoLoading(false);
+      setShowPoster(true);
       return;
     }
 
@@ -51,10 +54,13 @@ const HeroSection = () => {
           console.log('Video started automatically');
           setShowPlayButton(false);
           setIsVideoLoading(false);
+          // Hide poster after a short delay to ensure smooth transition
+          setTimeout(() => setShowPoster(false), 500);
         } catch (error) {
           console.log('Autoplay was prevented by browser:', error);
           setShowPlayButton(true);
           setIsVideoLoading(false);
+          setShowPoster(true);
         }
       }
     };
@@ -89,6 +95,7 @@ const HeroSection = () => {
     console.log('Video source path:', '/lovable-uploads/architect-video.mp4');
     setShowPlayButton(true);
     setIsVideoLoading(false);
+    setShowPoster(true);
   };
 
   const handleVideoLoad = () => {
@@ -98,6 +105,7 @@ const HeroSection = () => {
   const handleVideoLoadStart = () => {
     console.log('Video loading started');
     setIsVideoLoading(true);
+    setShowPoster(true);
   };
 
   const handleCanPlayThrough = () => {
@@ -117,6 +125,7 @@ const HeroSection = () => {
       try {
         await videoRef.current.play();
         setShowPlayButton(false);
+        setShowPoster(false);
         console.log('Video started manually');
       } catch (error) {
         console.error('Manual play failed:', error);
@@ -180,6 +189,17 @@ const HeroSection = () => {
                         {/* Fallback für Browser ohne Video-Support */}
                         <img src="/lovable-uploads/D1_Groß.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
+                      
+                      {/* Poster Image Overlay */}
+                      {showPoster && (
+                        <div className={`absolute inset-0 transition-opacity duration-500 ${showPoster ? 'opacity-100' : 'opacity-0'}`}>
+                          <img 
+                            src="/lovable-uploads/D1_Groß.png" 
+                            alt="Modernes Architekturprojekt" 
+                            className="object-cover h-full w-full"
+                          />
+                        </div>
+                      )}
                       
                       {/* Loading Indicator - nur für Desktop */}
                       {isVideoLoading && !isMobile() && !isIOS() && (
