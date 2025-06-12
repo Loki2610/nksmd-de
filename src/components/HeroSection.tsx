@@ -168,7 +168,7 @@ const HeroSection = () => {
                         webkit-playsinline="true"
                         x-webkit-airplay="allow"
                         preload={isMobile() || isIOS() ? "metadata" : "auto"}
-                        poster="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png"
+                        poster="/lovable-uploads/D1_Groß.png"
                         aria-label="Architekt bei der Arbeit" 
                         data-lovable="video" 
                         data-lovable-type="video" 
