@@ -179,7 +179,7 @@ const HeroSection = () => {
                       >
                         <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
                         {/* Fallback für Browser ohne Video-Support */}
-                        <img src="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
+                        <img src="/lovable-uploads/D1_Groß.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
                       
                       {/* Loading Indicator - nur für Desktop */}
@@ -243,7 +243,7 @@ const HeroSection = () => {
                         >
                           <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
                           {/* Fallback für Browser ohne Video-Support */}
-                          <img src="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
+                          <img src="/lovable-uploads/D1_Groß.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
                         </video>
                       </div>
                     </div>
