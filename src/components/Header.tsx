@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { MapPin, Mail, Phone } from "lucide-react";
-
 const Header = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -10,7 +8,6 @@ const Header = () => {
       behavior: 'smooth'
     });
   };
-  
   return <header className="bg-white py-6 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
@@ -46,7 +43,7 @@ const Header = () => {
             <div className="hidden lg:flex items-center space-x-6 text-sm text-architect-muted mr-6">
               <a href="mailto:hallo@nksmd.de" className="flex items-center hover:text-architect-accent">
                 <Mail className="h-4 w-4 mr-1" />
-                <span>hallo@nksmd.de</span>
+                <span>nikolaus.schmid@nksmd.de</span>
               </a>
               <a href="tel:+4915566008115" className="flex items-center hover:text-architect-accent">
                 <Phone className="h-4 w-4 mr-1" />
@@ -62,5 +59,4 @@ const Header = () => {
       </div>
     </header>;
 };
-
 export default Header;
