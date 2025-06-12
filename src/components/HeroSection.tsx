@@ -7,7 +7,6 @@ const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(false);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
-  const [showPoster, setShowPoster] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // iOS and mobile detection
@@ -16,9 +15,7 @@ const HeroSection = () => {
   };
 
   const isMobile = () => {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-           ('ontouchstart' in window) || 
-           (navigator.maxTouchPoints > 0);
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   };
 
   // Safari detection
@@ -27,15 +24,11 @@ const HeroSection = () => {
   };
 
   useEffect(() => {
-    console.log('HeroSection initialized - showPoster:', true);
-    console.log('Poster image path: /lovable-uploads/D1_Groß.png');
-    
     // For iOS/mobile devices, show play button immediately
     if (isIOS() || isMobile()) {
-      console.log('Mobile/iOS device detected - showing play button and poster permanently');
+      console.log('Mobile/iOS device detected - showing play button');
       setShowPlayButton(true);
       setIsVideoLoading(false);
-      setShowPoster(true);
       return;
     }
 
@@ -43,7 +36,6 @@ const HeroSection = () => {
       if (videoRef.current) {
         try {
           setIsVideoLoading(true);
-          console.log('Attempting to play video...');
           
           // Wait for video to be ready
           if (videoRef.current.readyState < 3) {
@@ -57,19 +49,13 @@ const HeroSection = () => {
           }
 
           await videoRef.current.play();
-          console.log('Video started automatically - hiding poster after delay');
+          console.log('Video started automatically');
           setShowPlayButton(false);
           setIsVideoLoading(false);
-          // Hide poster after video actually starts playing
-          setTimeout(() => {
-            console.log('Hiding poster now');
-            setShowPoster(false);
-          }, 1000);
         } catch (error) {
-          console.log('Autoplay was prevented by browser - keeping poster visible:', error);
+          console.log('Autoplay was prevented by browser:', error);
           setShowPlayButton(true);
           setIsVideoLoading(false);
-          setShowPoster(true);
         }
       }
     };
@@ -102,10 +88,8 @@ const HeroSection = () => {
   const handleVideoError = (error: React.SyntheticEvent<HTMLVideoElement>) => {
     console.error('Video loading error:', error);
     console.log('Video source path:', '/lovable-uploads/architect-video.mp4');
-    console.log('Showing poster due to video error');
     setShowPlayButton(true);
     setIsVideoLoading(false);
-    setShowPoster(true);
   };
 
   const handleVideoLoad = () => {
@@ -113,9 +97,8 @@ const HeroSection = () => {
   };
 
   const handleVideoLoadStart = () => {
-    console.log('Video loading started - keeping poster visible');
+    console.log('Video loading started');
     setIsVideoLoading(true);
-    setShowPoster(true);
   };
 
   const handleCanPlayThrough = () => {
@@ -133,13 +116,8 @@ const HeroSection = () => {
     e.stopPropagation();
     if (videoRef.current) {
       try {
-        console.log('Manual play button clicked');
         await videoRef.current.play();
         setShowPlayButton(false);
-        setTimeout(() => {
-          console.log('Hiding poster after manual play');
-          setShowPoster(false);
-        }, 500);
         console.log('Video started manually');
       } catch (error) {
         console.error('Manual play failed:', error);
@@ -190,7 +168,7 @@ const HeroSection = () => {
                         webkit-playsinline="true"
                         x-webkit-airplay="allow"
                         preload={isMobile() || isIOS() ? "metadata" : "auto"}
-                        poster="/lovable-uploads/D1_Groß.png"
+                        poster="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png"
                         aria-label="Architekt bei der Arbeit" 
                         data-lovable="video" 
                         data-lovable-type="video" 
@@ -200,24 +178,13 @@ const HeroSection = () => {
                         onCanPlayThrough={handleCanPlayThrough}
                       >
                         <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
+                        {/* Fallback für Browser ohne Video-Support */}
+                        <img src="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
-                      
-                      {/* Poster Image Overlay - Always on top */}
-                      {showPoster && (
-                        <div className="absolute inset-0 z-10 transition-opacity duration-500">
-                          <img 
-                            src="/lovable-uploads/D1_Groß.png" 
-                            alt="Modernes Architekturprojekt" 
-                            className="object-cover h-full w-full"
-                            onError={(e) => console.error('Poster image failed to load:', e)}
-                            onLoad={() => console.log('Poster image loaded successfully')}
-                          />
-                        </div>
-                      )}
                       
                       {/* Loading Indicator - nur für Desktop */}
                       {isVideoLoading && !isMobile() && !isIOS() && (
-                        <div className="absolute inset-0 z-20 bg-black bg-opacity-30 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
                           <div className="bg-white bg-opacity-90 rounded-full p-3">
                             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-architect-dark"></div>
                           </div>
@@ -226,7 +193,7 @@ const HeroSection = () => {
                       
                       {/* Play Button - für mobile Geräte und Fallback */}
                       {showPlayButton && (
-                        <div className="absolute inset-0 z-30 bg-black bg-opacity-40 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                           <button 
                             onClick={handlePlayButtonClick}
                             className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 md:p-6 transition-all duration-200 touch-manipulation"
@@ -239,7 +206,7 @@ const HeroSection = () => {
                       
                       {/* Hover Overlay with Expand Icon - nur für Desktop */}
                       {!showPlayButton && !isVideoLoading && !isMobile() && !isIOS() && (
-                        <div className="absolute inset-0 z-20 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="bg-white bg-opacity-90 rounded-full p-3">
                               <Maximize2 className="h-6 w-6 text-architect-dark" />
@@ -275,6 +242,8 @@ const HeroSection = () => {
                           controlsList="nodownload"
                         >
                           <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
+                          {/* Fallback für Browser ohne Video-Support */}
+                          <img src="/lovable-uploads/95f0d079-7126-47a6-adcb-cdf3a0144a8d.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
                         </video>
                       </div>
                     </div>
