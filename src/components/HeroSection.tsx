@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(false);
-  const [isVideoLoading, setIsVideoLoading] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // iOS and mobile detection
