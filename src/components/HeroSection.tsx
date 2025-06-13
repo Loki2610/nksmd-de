@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(false);
-  const [isVideoLoading, setIsVideoLoading] = useState(true);
+  const [isVideoLoading, setIsVideoLoading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // iOS and mobile detection
@@ -167,7 +167,7 @@ const HeroSection = () => {
                         playsInline
                         webkit-playsinline="true"
                         x-webkit-airplay="allow"
-                        preload={isMobile() || isIOS() ? "metadata" : "auto"}
+                        preload="metadata"
                         poster="/lovable-uploads/D1_Groß.png"
                         aria-label="Architekt bei der Arbeit" 
                         data-lovable="video" 
