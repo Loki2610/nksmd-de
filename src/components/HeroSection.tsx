@@ -26,7 +26,7 @@ const HeroSection = () => {
   }, []);
   const handleVideoError = (error: React.SyntheticEvent<HTMLVideoElement>) => {
     console.error('Video loading error:', error);
-    console.log('Video source path:', '/lovable-uploads/architect-video.mp4');
+    console.log('Video source path:', '/lovable-uploads/architect-video-mittel.mp4');
     setShowPlayButton(true);
     setIsVideoLoading(false);
   };
@@ -92,7 +92,7 @@ const HeroSection = () => {
                   <DialogTrigger asChild>
                     <div className="relative h-full w-full" onClick={handleVideoClick}>
                       <video ref={videoRef} className="object-cover h-full w-full" loop muted playsInline webkit-playsinline="true" x-webkit-airplay="allow" preload="metadata" poster="/lovable-uploads/poster418.png" aria-label="Modernes Architekturprojekt" data-lovable="video" data-lovable-type="video" onError={handleVideoError} onLoadedData={handleVideoLoad} onLoadStart={handleVideoLoadStart} onCanPlayThrough={handleCanPlayThrough}>
-                        <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
+                        <source src="/lovable-uploads/architect-video-mittel.mp4" type="video/mp4" data-lovable="video-source" />
                         {/* Fallback für Browser ohne Video-Support */}
                         <img src="/lovable-uploads/poster418.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
@@ -139,7 +139,7 @@ const HeroSection = () => {
                       {/* Video Container */}
                       <div className="relative aspect-video w-full">
                         <video className="w-full h-full object-contain" controls autoPlay loop preload="auto" poster="/lovable-uploads/poster418.png" aria-label="Modernes Architekturprojekt - Vergrößerte Ansicht" controlsList="nodownload">
-                          <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
+                          <source src="/lovable-uploads/architect-video-mittel.mp4" type="video/mp4" />
                           {/* Fallback für Browser ohne Video-Support */}
                           <img src="/lovable-uploads/poster418.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
                         </video>
