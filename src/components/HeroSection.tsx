@@ -104,7 +104,7 @@ const HeroSection = () => {
                       
                       {/* Loading Indicator - nur für Desktop */}
                       {isVideoLoading && !isMobile() && !isIOS() && <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                          <div className="bg-white bg-opacity-50 rounded-full p-3">
+                          <div className="bg-white bg-opacity-20 rounded-full p-3">
                             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-architect-dark"></div>
                           </div>
                         </div>}
