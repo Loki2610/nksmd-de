@@ -1,11 +1,10 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Maximize2, Play } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showPlayButton, setShowPlayButton] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(true);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -24,65 +23,9 @@ const HeroSection = () => {
   };
 
   useEffect(() => {
-    // For iOS/mobile devices, show play button immediately
-    if (isIOS() || isMobile()) {
-      console.log('Mobile/iOS device detected - showing play button');
-      setShowPlayButton(true);
-      setIsVideoLoading(false);
-      return;
-    }
-
-    const playVideo = async () => {
-      if (videoRef.current) {
-        try {
-          setIsVideoLoading(true);
-          
-          // Wait for video to be ready
-          if (videoRef.current.readyState < 3) {
-            await new Promise((resolve) => {
-              const onCanPlay = () => {
-                videoRef.current?.removeEventListener('canplaythrough', onCanPlay);
-                resolve(void 0);
-              };
-              videoRef.current?.addEventListener('canplaythrough', onCanPlay);
-            });
-          }
-
-          await videoRef.current.play();
-          console.log('Video started automatically');
-          setShowPlayButton(false);
-          setIsVideoLoading(false);
-        } catch (error) {
-          console.log('Autoplay was prevented by browser:', error);
-          setShowPlayButton(true);
-          setIsVideoLoading(false);
-        }
-      }
-    };
-
-    // Use Intersection Observer for better autoplay timing (desktop only)
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const timer = setTimeout(() => {
-              playVideo();
-            }, isSafari() ? 500 : 100);
-            
-            return () => clearTimeout(timer);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
+    // Nur Play-Button anzeigen, kein Autoplay
+    setShowPlayButton(true);
+    setIsVideoLoading(false);
   }, []);
 
   const handleVideoError = (error: React.SyntheticEvent<HTMLVideoElement>) => {
@@ -168,7 +111,6 @@ const HeroSection = () => {
                         webkit-playsinline="true"
                         x-webkit-airplay="allow"
                         preload="metadata"
-                        poster="/lovable-uploads/D1_Groß.png"
                         aria-label="Architekt bei der Arbeit" 
                         data-lovable="video" 
                         data-lovable-type="video" 
@@ -182,6 +124,17 @@ const HeroSection = () => {
                         <img src="/lovable-uploads/D1_Groß.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
                       
+                      {/* Standbild-Overlay */}
+                      {showPlayButton && (
+                        <div className="absolute inset-0">
+                          <img 
+                            src="/lovable-uploads/D1_Groß.png" 
+                            alt="Modernes Architekturprojekt" 
+                            className="object-cover h-full w-full"
+                          />
+                        </div>
+                      )}
+                      
                       {/* Loading Indicator - nur für Desktop */}
                       {isVideoLoading && !isMobile() && !isIOS() && (
                         <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
@@ -193,7 +146,7 @@ const HeroSection = () => {
                       
                       {/* Play Button - für mobile Geräte und Fallback */}
                       {showPlayButton && (
-                        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
                           <button 
                             onClick={handlePlayButtonClick}
                             className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 md:p-6 transition-all duration-200 touch-manipulation"
