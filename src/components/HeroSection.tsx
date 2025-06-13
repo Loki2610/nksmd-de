@@ -111,7 +111,7 @@ const HeroSection = () => {
                         webkit-playsinline="true" 
                         x-webkit-airplay="allow" 
                         preload="metadata" 
-                        poster="/lovable-uploads/0041e3ec-c12e-4eaf-8577-0048b5a20c8c.png"
+                        poster="/lovable-uploads/poster418.png"
                         aria-label="Modernes Architekturprojekt" 
                         data-lovable="video" 
                         data-lovable-type="video" 
@@ -122,13 +122,13 @@ const HeroSection = () => {
                       >
                         <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
                         {/* Fallback für Browser ohne Video-Support */}
-                        <img src="/lovable-uploads/0041e3ec-c12e-4eaf-8577-0048b5a20c8c.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
+                        <img src="/lovable-uploads/poster418.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
                       
                       {/* Standbild-Overlay */}
                       {showPlayButton && (
                         <div className="absolute inset-0">
-                          <img src="/lovable-uploads/0041e3ec-c12e-4eaf-8577-0048b5a20c8c.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" />
+                          <img src="/lovable-uploads/poster418.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" />
                         </div>
                       )}
                       
@@ -188,13 +188,13 @@ const HeroSection = () => {
                           autoPlay 
                           loop 
                           preload="auto" 
-                          poster="/lovable-uploads/0041e3ec-c12e-4eaf-8577-0048b5a20c8c.png"
+                          poster="/lovable-uploads/poster418.png"
                           aria-label="Modernes Architekturprojekt - Vergrößerte Ansicht" 
                           controlsList="nodownload"
                         >
                           <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
                           {/* Fallback für Browser ohne Video-Support */}
-                          <img src="/lovable-uploads/0041e3ec-c12e-4eaf-8577-0048b5a20c8c.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
+                          <img src="/lovable-uploads/poster418.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
                         </video>
                       </div>
                     </div>
