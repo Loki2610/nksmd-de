@@ -7,7 +7,6 @@ const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPlayButton, setShowPlayButton] = useState(true);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // iOS and mobile detection
@@ -27,7 +26,6 @@ const HeroSection = () => {
     // Nur Play-Button anzeigen, kein Autoplay
     setShowPlayButton(true);
     setIsVideoLoading(false);
-    setIsVideoPlaying(false);
   }, []);
 
   const handleVideoError = (error: React.SyntheticEvent<HTMLVideoElement>) => {
@@ -35,7 +33,6 @@ const HeroSection = () => {
     console.log('Video source path:', '/lovable-uploads/architect-video.mp4');
     setShowPlayButton(true);
     setIsVideoLoading(false);
-    setIsVideoPlaying(false);
   };
 
   const handleVideoLoad = () => {
@@ -64,7 +61,6 @@ const HeroSection = () => {
       try {
         await videoRef.current.play();
         setShowPlayButton(false);
-        setIsVideoPlaying(true);
         console.log('Video started manually');
       } catch (error) {
         console.error('Manual play failed:', error);
@@ -115,7 +111,7 @@ const HeroSection = () => {
                         webkit-playsinline="true" 
                         x-webkit-airplay="allow" 
                         preload="metadata" 
-                        poster="/lovable-uploads/877be70a-a882-44e3-ab3f-e6d7bedc39a1.png"
+                        poster="/lovable-uploads/poster418.png"
                         aria-label="Modernes Architekturprojekt" 
                         data-lovable="video" 
                         data-lovable-type="video" 
@@ -126,13 +122,13 @@ const HeroSection = () => {
                       >
                         <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" data-lovable="video-source" />
                         {/* Fallback für Browser ohne Video-Support */}
-                        <img src="/lovable-uploads/877be70a-a882-44e3-ab3f-e6d7bedc39a1.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
+                        <img src="/lovable-uploads/poster418.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" data-lovable="fallback-image" />
                       </video>
                       
                       {/* Standbild-Overlay */}
                       {showPlayButton && (
                         <div className="absolute inset-0">
-                          <img src="/lovable-uploads/877be70a-a882-44e3-ab3f-e6d7bedc39a1.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" />
+                          <img src="/lovable-uploads/poster418.png" alt="Modernes Architekturprojekt" className="object-cover h-full w-full" />
                         </div>
                       )}
                       
@@ -151,15 +147,15 @@ const HeroSection = () => {
                           <button 
                             onClick={handlePlayButtonClick} 
                             aria-label="Video abspielen" 
-                            className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 md:p-4 transition-all duration-100 touch-manipulation"
+                            className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 md:p-6 transition-all duration-100 touch-manipulation"
                           >
-                            <Play className="h-6 w-6 md:h-8 md:w-8 text-architect-dark ml-1" />
+                            <Play className="h-8 w-8 md:h-10 md:w-10 text-architect-dark ml-1" />
                           </button>
                         </div>
                       )}
                       
-                      {/* Hover Overlay with Expand Icon - nur für Desktop und nur wenn Video läuft */}
-                      {isVideoPlaying && !isVideoLoading && !isMobile() && !isIOS() && (
+                      {/* Hover Overlay with Expand Icon - nur für Desktop */}
+                      {!showPlayButton && !isVideoLoading && !isMobile() && !isIOS() && (
                         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="bg-white bg-opacity-90 rounded-full p-3">
@@ -192,13 +188,13 @@ const HeroSection = () => {
                           autoPlay 
                           loop 
                           preload="auto" 
-                          poster="/lovable-uploads/877be70a-a882-44e3-ab3f-e6d7bedc39a1.png"
+                          poster="/lovable-uploads/poster418.png"
                           aria-label="Modernes Architekturprojekt - Vergrößerte Ansicht" 
                           controlsList="nodownload"
                         >
                           <source src="/lovable-uploads/architect-video.mp4" type="video/mp4" />
                           {/* Fallback für Browser ohne Video-Support */}
-                          <img src="/lovable-uploads/877be70a-a882-44e3-ab3f-e6d7bedc39a1.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
+                          <img src="/lovable-uploads/poster418.png" alt="Modernes Architekturprojekt" className="object-contain w-full h-full" />
                         </video>
                       </div>
                     </div>
